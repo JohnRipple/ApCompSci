@@ -1,0 +1,308 @@
+	import java.awt.*;
+	import java.awt.event.*;
+	import javax.swing.*;
+
+	import javax.swing.JFrame;
+
+	public class SwingDatabaseGUI implements ActionListener {
+		
+		public static void main(String[] args) {
+			try {
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			} catch (Exception ignored) {
+			}
+			javax.swing.SwingUtilities.invokeLater(new Runnable() { 
+	            public void run() { 
+	            	SwingDatabaseGUI hotel = new SwingDatabaseGUI();
+	            	hotel.createAndShowGUI();
+	            	//Customer customer;
+	            } 
+	        }); 
+			
+		}
+		private JTabbedPane tabbedPane;
+		private int tabIndex = 0;
+		//Hotel Variables
+		private JTextField nameH;
+		private JTextField addressLine1H;
+		private JTextField addressLine2H;
+		private JTextField cityH;
+		private JTextField stateH;
+		private JTextField zipH;
+		private JLabel labelNameH;
+		private JLabel labelAddressLine1H;
+		private JLabel labelAddressLine2H;
+		private JLabel labelCityH;
+		private JLabel labelStateH;
+		private JLabel labelZipH;
+		private JButton nextH;
+		private JButton clearH;
+		
+		//Customer
+		private Customer customer;
+		
+		//Customer Variables
+		private JButton submit;
+		private JButton clear;
+		static private String[] info = new String[9];
+		private JTextField firstName;
+		private JTextField lastName;
+		private JTextField addr1;
+		private JTextField addr2;
+		private JTextField city;
+		private JTextField state;
+		private JTextField zip;
+		private JTextField phoneNumber;
+		private JTextField emailAddress;
+		private JLabel labelFirst;
+		private JLabel labelLast;
+		private JLabel labelAddr1;
+		private JLabel labelAddr2;
+		private JLabel labelCity;
+		private JLabel labelState;
+		private JLabel labelZip;
+		private JLabel labelPhone;
+		private JLabel labelEmail;
+		private JButton next = new JButton("Next");
+		private JButton back = new JButton("Back");
+		private JLabel labelError;
+		private boolean error = false;
+		//int pos;
+		
+		private void createAndShowGUI() {
+			JFrame mainFrame = new JFrame("Swing Database");
+			mainFrame.setLayout(new BorderLayout());
+			
+			GridLayout grid = new GridLayout(13,2);
+			GridLayout gridH = new GridLayout(8,2);
+			grid.setVgap(12);
+			gridH.setVgap(12);
+			tabbedPane = new JTabbedPane();
+			
+			//Panels
+			JPanel bookingPanel = new JPanel();
+			JPanel paymentPanel = new JPanel();
+			JPanel reviewPanel = new JPanel();
+			JPanel summaryPanel = new JPanel();
+			JPanel hotelPanel = new JPanel();
+			hotelPanel.setLayout(gridH);
+			hotelPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
+
+			
+			JPanel mainPanel = new JPanel();
+			mainPanel.setLayout(grid);
+			mainFrame.add(tabbedPane, BorderLayout.CENTER);
+			mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
+			
+			//Tabs
+			tabbedPane.addTab("Hotel", hotelPanel);
+			tabbedPane.addTab("Customer", mainPanel);
+			tabbedPane.addTab("Booking", bookingPanel);
+			
+			
+			//Main Fields
+			firstName = new JTextField();
+			lastName = new JTextField();
+			addr1 = new JTextField();
+			addr2 = new JTextField();
+			city = new JTextField();
+			state = new JTextField();
+			zip = new JTextField();
+			phoneNumber = new JTextField();
+			emailAddress = new JTextField();
+			submit = new JButton("Submit");
+			clear = new JButton("Clear");
+			labelFirst = new JLabel("First Name: ");
+			labelLast = new JLabel("Last Name: ");
+			labelAddr1 = new JLabel("Addr Line 1: ");
+			labelAddr2 = new JLabel("Addr Line 2: ");
+			labelCity = new JLabel("City: ");
+			labelState = new JLabel("State: ");
+			labelZip = new JLabel("Zip: ");
+			labelPhone = new JLabel("Phone Number: ");
+			labelEmail = new JLabel("Email Address: ");
+			labelError = new JLabel("");
+			JLabel labelCar = new JLabel("Hotel ");
+			labelCar.setFont(new Font("", Font.PLAIN, 18));
+			JLabel labelShop = new JLabel("Booking");
+			labelShop.setFont(new Font("", Font.PLAIN, 18));
+			labelCar.setHorizontalAlignment(SwingConstants.RIGHT);
+			
+			mainPanel.add(labelCar);
+			mainPanel.add(labelShop);
+			mainPanel.add(labelFirst);
+			mainPanel.add(firstName);
+
+			mainPanel.add(labelLast);
+			mainPanel.add(lastName);
+			
+			mainPanel.add(labelAddr1);
+			mainPanel.add(addr1);
+			
+			mainPanel.add(labelAddr2);
+			mainPanel.add(addr2);
+			
+			mainPanel.add(labelCity);
+			mainPanel.add(city);
+			
+			mainPanel.add(labelState);
+			mainPanel.add(state);
+			
+			mainPanel.add(labelZip);
+			mainPanel.add(zip);
+			
+			mainPanel.add(labelPhone);
+			mainPanel.add(phoneNumber);
+			
+			mainPanel.add(labelEmail);
+			mainPanel.add(emailAddress);
+			
+			mainPanel.add(back);
+			mainPanel.add(next);
+			//mainPanel.add(submit);
+			mainPanel.add(clear);
+			
+			mainPanel.add(labelError);
+			
+			//Hotel Pane
+			nameH = new JTextField();
+			addressLine1H = new JTextField();
+			addressLine2H = new JTextField();
+			cityH = new JTextField();
+			stateH = new JTextField();
+			zipH = new JTextField();
+			labelNameH = new JLabel("Hotel: ");
+			labelAddressLine1H = new JLabel("Address 1: ");
+			labelAddressLine2H = new JLabel("Address 2: ");
+			labelCityH = new JLabel("City: ");
+			labelStateH = new JLabel("State: ");
+			labelZipH = new JLabel("Zip: ");
+			nextH = new JButton("Next");
+			clearH = new JButton("Clear");
+			JLabel empty = new JLabel("");
+			
+			hotelPanel.add(labelNameH);
+			hotelPanel.add(nameH);
+			hotelPanel.add(labelAddressLine1H);
+			hotelPanel.add(addressLine1H);
+			hotelPanel.add(labelAddressLine2H);
+			hotelPanel.add(addressLine2H);
+			hotelPanel.add(labelCityH);
+			hotelPanel.add(cityH);
+			hotelPanel.add(labelStateH);
+			hotelPanel.add(stateH);
+			hotelPanel.add(labelZipH);
+			hotelPanel.add(zipH);
+			hotelPanel.add(empty);
+			hotelPanel.add(nextH);
+			hotelPanel.add(clearH);
+			
+			mainFrame.setSize(350,400);
+			mainFrame.setResizable(true);
+			//frame.pack();
+	        mainFrame.setVisible(true);
+	        
+	        nextH.addActionListener(this);
+	        clearH.addActionListener(this);
+	        
+	        submit.addActionListener(this);
+	        clear.addActionListener(this);
+	        
+			
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			labelError.setText("");
+			error = false;
+			if (e.getSource() == submit) {
+				info[0] = firstName.getText();
+				info[1] = lastName.getText();
+				info[2] = addr1.getText();
+				info[3] = addr2.getText();
+				info[4] = city.getText();
+				info[5] = state.getText();
+				info[6] = zip.getText();
+				info[7] = phoneNumber.getText();
+				info[8] = emailAddress.getText();
+				for(int i = 0; i< info.length; i++) {
+					if (info[i].equals("")) {
+						labelError.setForeground(Color.RED);
+						labelError.setText("You did not enter some fields!");
+						error = true;
+					}
+				}
+				if (error == false) {
+					 customer = new Customer(info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8]);
+				}
+				
+			} else if(e.getSource() == clear) {
+				firstName.setText("");
+				lastName.setText("");
+				addr1.setText("");
+				addr2.setText("");
+				city.setText("");
+				state.setText("");
+				zip.setText("");
+				phoneNumber.setText("");
+				emailAddress.setText("");
+			} else if(e.getSource() == nextH) {
+				tabIndex++;
+				tabbedPane.setSelectedIndex(tabIndex);
+			} else if(e.getSource() == back) {
+				tabIndex--;
+				tabbedPane.setSelectedIndex(tabIndex);
+			} else if (e.getSource() == clearH) {
+				nameH.setText("");
+				addressLine1H.setText("");
+				addressLine2H.setText("");
+				cityH.setText("");
+				stateH.setText("");
+				zipH.setText("");
+			}
+		}
+		
+		public Customer getCustomer() {
+			return customer;
+		}
+		
+		public String[] getFields() {
+			return info;
+		}
+		
+		public String getFirstName() {
+			return info[0];
+		}
+		
+		public String getLastName() {
+			return info[1];
+		}
+		
+		public String getAddr1() {
+			return info[2];
+		}
+		
+		public String getAddr2() {
+			return info[3];
+		}
+		
+		public String getCity() {
+			return info[4];
+		}
+		
+		public String getState() {
+			return info[5];
+		}
+		
+		public String getZip() {
+			return info[6];
+		}
+		
+		public String getPhoneNumber() {
+			return info[7];
+		}
+		
+		public String getEmailAddress() {
+			return info[8];
+		}
+
+	}

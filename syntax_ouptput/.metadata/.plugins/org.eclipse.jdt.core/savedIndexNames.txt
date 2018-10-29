@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\Users\ripplejr\Desktop\syntax_ouptput\.metadata\.plugins\org.eclipse.jdt.core
+2976242609.index
+1260016628.index
