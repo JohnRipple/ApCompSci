@@ -248,7 +248,6 @@ public class HotelGUI implements ActionListener, ChangeListener {
         nextH.addActionListener(this);
         clearH.addActionListener(this);
         
-        submit.addActionListener(this);
         clear.addActionListener(this);
         next.addActionListener(this);
         back.addActionListener(this);
@@ -420,24 +419,19 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		labelError.setText("");
 		error = false;
 		if (e.getSource() == submit) {
-			tabbedPane.setSelectedIndex(tabbedPane.getSelectedIndex() +1);
+			tabbedPane.setSelectedIndex(tabbedPane.getSelectedIndex() + 1);
 			customer = new Customer(firstName.getText(), lastName.getText(), addr1.getText(), addr2.getText(), city.getText(), state.getText(), zip.getText(), phoneNumber.getText(), emailAddress.getText());
 			booking = new Booking(bookingDate.getText(), numberOfRooms.getText(), customer);
-		} else if(e.getSource() == clear) {
-			firstName.setText("");
-			lastName.setText("");
-			addr1.setText("");
-			addr2.setText("");
-			city.setText("");
-			state.setText("");
-			zip.setText("");
-			phoneNumber.setText("");
-			emailAddress.setText("");
-		} else if(e.getSource() == nextH || e.getSource() == next || e.getSource() == nextP || e.getSource() == nextB) {
+			System.out.println(booking.getCustomer());
+		} 
+		//Next and back buttons
+		else if(e.getSource() == nextH || e.getSource() == next || e.getSource() == nextP || e.getSource() == nextB) {
 			tabbedPane.setSelectedIndex(tabbedPane.getSelectedIndex() + 1);
 		} else if(e.getSource() == back || e.getSource() == backP || e.getSource() == backB || e.getSource() == backR) {
 			tabbedPane.setSelectedIndex(tabbedPane.getSelectedIndex() - 1);
-		} else if (e.getSource() == clearH) {
+		}
+		//Clear buttons
+		else if (e.getSource() == clearH) {
 			nameH.setText("");
 			addressLine1H.setText("");
 			addressLine2H.setText("");
@@ -451,6 +445,16 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		} else if (e.getSource() == clearB) {
 			bookingDate.setText("");
 			numberOfRooms.setText("");
+		} else if(e.getSource() == clear) {
+			firstName.setText("");
+			lastName.setText("");
+			addr1.setText("");
+			addr2.setText("");
+			city.setText("");
+			state.setText("");
+			zip.setText("");
+			phoneNumber.setText("");
+			emailAddress.setText("");
 		}
 	}
 	
