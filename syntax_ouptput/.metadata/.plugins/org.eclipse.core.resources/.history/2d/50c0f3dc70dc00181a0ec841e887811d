@@ -3,10 +3,8 @@ package org.legendtitans.com;
 public class Payment {
 	private PaymentType paymentType;
 	private String paymentAmount;
-	private int type;
-	public Payment(String pa, int t) {
+	public Payment(String pa) {
 		paymentAmount = pa;
-		type = t;
 	}
 	
 	public PaymentType getPaymentType() {

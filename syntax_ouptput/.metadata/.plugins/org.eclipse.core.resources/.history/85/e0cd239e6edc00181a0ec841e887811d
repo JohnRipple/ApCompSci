@@ -3,24 +3,17 @@ package org.legendtitans.com;
 public class Booking {
 	private String bookingDate;
 	private String numberOfRooms;
-	public Booking (String bd, String nr) {
+	public Booking (String bd, String nr, Customer c) {
 		bookingDate = bd;
 		numberOfRooms = nr;
+		customer = c;
 		
 	}
 	
 	Customer customer;
 	
-	Hotel hotel;
+	//Hotel hotel;
 	
-	public Hotel getHotel() {
-		return hotel;
-	}
-
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
-	}
-
 	public Customer getCustomer() {
 		return customer;
 	}

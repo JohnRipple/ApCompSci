@@ -2,11 +2,10 @@ package org.legendtitans.com;
 
 public class Payment {
 	private PaymentType paymentType;
-	private String paymentAmount;
-	private int type;
-	public Payment(String pa, int t) {
+	private double paymentAmount;
+	public Payment(PaymentType pt, double pa) {
+		paymentType = pt;
 		paymentAmount = pa;
-		type = t;
 	}
 	
 	public PaymentType getPaymentType() {
@@ -15,10 +14,10 @@ public class Payment {
 	public void setPaymentType(PaymentType paymentType) {
 		this.paymentType = paymentType;
 	}
-	public String getPaymentAmount() {
+	public double getPaymentAmount() {
 		return paymentAmount;
 	}
-	public void setPaymentAmount(String paymentAmount) {
+	public void setPaymentAmount(double paymentAmount) {
 		this.paymentAmount = paymentAmount;
 	}
 

@@ -52,6 +52,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	private JButton clearP = new JButton("Clear");
 	private JRadioButton[] paymentT = new JRadioButton[3];
 	ButtonGroup group = new ButtonGroup();
+	private int type;
 	
 	//Hotel Variables
 	private JPanel hotelPanel;
@@ -74,6 +75,8 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	Customer customer;
 	private JPanel mainPanel;
 	Booking booking;
+	Hotel hotel;
+	Payment payment;
 	
 	//Customer Variables
 	private JButton submit;
@@ -352,6 +355,13 @@ public class HotelGUI implements ActionListener, ChangeListener {
 			submit.setEnabled(false);
 		} else if(paymentT[0].isSelected() || paymentT[1].isSelected() || paymentT[2].isSelected()) {
 			submit.setEnabled(true);
+			if (paymentT[0].isSelected()) {
+				type = 0;
+			} else if (paymentT[1].isSelected()) {
+				type = 1;
+			} else if (paymentT[2].isSelected()) {
+				type = 2;
+			}
 		}
 		
 	}
@@ -421,8 +431,11 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		if (e.getSource() == submit) {
 			tabbedPane.setSelectedIndex(tabbedPane.getSelectedIndex() + 1);
 			customer = new Customer(firstName.getText(), lastName.getText(), addr1.getText(), addr2.getText(), city.getText(), state.getText(), zip.getText(), phoneNumber.getText(), emailAddress.getText());
-			booking = new Booking(bookingDate.getText(), numberOfRooms.getText(), customer);
-			System.out.println(booking.getCustomer());
+			hotel = new Hotel(nameH.getText(), addressLine1H.getText(), addressLine2H.getText(), cityH.getText(), stateH.getText(), zipH.getText());
+			booking = new Booking(bookingDate.getText(), numberOfRooms.getText());
+			booking.setCustomer(customer);
+			booking.setHotel(hotel);
+			payment = new Payment(paymentAmount.getText(), type);
 		} 
 		//Next and back buttons
 		else if(e.getSource() == nextH || e.getSource() == next || e.getSource() == nextP || e.getSource() == nextB) {
