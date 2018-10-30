@@ -1,24 +1,23 @@
 package org.legendtitans.com;
 
 public class Payment {
-	private PaymentType paymentType;
-	private String paymentAmount;
-	private int type;
-	public Payment(String pa, int t) {
+	private double paymentAmount;
+	private int paymentType;
+	public Payment(double pa, int t) {
 		paymentAmount = pa;
-		type = t;
+		paymentType = t;
 	}
 	
-	public PaymentType getPaymentType() {
+	public int getPaymentType() {
 		return paymentType;
 	}
-	public void setPaymentType(PaymentType paymentType) {
-		this.paymentType = paymentType;
+	public void setPaymentType(int type) {
+		this.paymentType = type;
 	}
-	public String getPaymentAmount() {
+	public double getPaymentAmount() {
 		return paymentAmount;
 	}
-	public void setPaymentAmount(String paymentAmount) {
+	public void setPaymentAmount(double paymentAmount) {
 		this.paymentAmount = paymentAmount;
 	}
 

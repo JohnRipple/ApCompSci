@@ -18,7 +18,6 @@ public class HotelGUI implements ActionListener, ChangeListener {
             public void run() { 
             	HotelGUI hotel = new HotelGUI();
             	hotel.createAndShowGUI();
-            	//Customer customer;
             } 
         }); 
 		
@@ -102,9 +101,6 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	private JLabel labelEmail;
 	private JButton next = new JButton("Next");
 	private JButton back = new JButton("Back");
-	private JLabel labelError;
-	private boolean error = false;
-	//int pos;
 	
 	private void createAndShowGUI() {
 		JFrame mainFrame = new JFrame("Swing Database");
@@ -124,7 +120,6 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		hotelPanel = new JPanel();
 		hotelPanel.setLayout(gridH);
 		hotelPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
-
 		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(grid);
@@ -138,7 +133,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		tabbedPane.addTab("Booking", bookingPanel);
 		tabbedPane.addTab("Review", reviewPanel);
 		tabbedPane.addTab("Summary", summaryPanel);
-		
+		//tabbedPane.setEnabledAt(tabbedPane.getTabCount() - 1, false);
 		
 		//Main Fields
 		firstName = new JTextField();
@@ -161,7 +156,6 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		labelZip = new JLabel("Zip: ");
 		labelPhone = new JLabel("Phone Number: ");
 		labelEmail = new JLabel("Email Address: ");
-		labelError = new JLabel("");
 		JLabel labelCar = new JLabel("Hotel ");
 		labelCar.setFont(new Font("", Font.PLAIN, 18));
 		JLabel labelShop = new JLabel("Booking");
@@ -202,7 +196,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		//mainPanel.add(submit);
 		mainPanel.add(clear);
 		
-		mainPanel.add(labelError);
+
 		
 		//Hotel Pane
 		JLabel labels[] = new JLabel[8];
@@ -254,7 +248,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
         clear.addActionListener(this);
         next.addActionListener(this);
         back.addActionListener(this);
-        
+        hotel();
 		payment();
 		booking();
 		review();
@@ -262,9 +256,21 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		tabbedPane.addChangeListener(this);
 	}
 	
-	public void summary() {
-		summaryPanel.setLayout(new BorderLayout());
-		summaryPanel.add(done, BorderLayout.CENTER);
+	private void hotel() {
+		
+	}
+	
+	private void summary() {
+		JLabel labels[] = new JLabel[1];
+		for(int i = 0; i < labels.length; i++) {
+			labels[i] = new JLabel("");
+			summaryPanel.add(labels[i]);
+		}
+		summaryPanel.setLayout(new GridLayout(1,3));
+		summaryPanel.add(done);
+		summaryPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
+		done.setFont(new Font("", Font.PLAIN, 28));
+		done.setHorizontalAlignment(SwingConstants.LEFT);
 	}
 	
 	public void stateChanged(ChangeEvent e) {
@@ -275,7 +281,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	
 	private JLabel[] review = new JLabel[19];
 	
-	public void review() {
+	private void review() {
 		JLabel labels[] = new JLabel[1];
 		reviewPanel.setLayout(gridAll);
 		gridAll.setVgap(12);
@@ -319,7 +325,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		submit.addActionListener(this);
 	}
 	
-	public void update() {
+	private void update() {
 		review[0].setText("Hotel: " + nameH.getText());
 		review[1].setText("Address Line 1: " + addressLine1H.getText());
 		review[2].setText("Address Line 2: " + addressLine2H.getText());
@@ -356,17 +362,17 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		} else if(paymentT[0].isSelected() || paymentT[1].isSelected() || paymentT[2].isSelected()) {
 			submit.setEnabled(true);
 			if (paymentT[0].isSelected()) {
-				type = 0;
+				type = PaymentType.CREDIT_CARD;
 			} else if (paymentT[1].isSelected()) {
-				type = 1;
+				type = PaymentType.DEBIT_CARD;
 			} else if (paymentT[2].isSelected()) {
-				type = 2;
+				type = PaymentType.CASH;
 			}
 		}
 		
 	}
 	
-	public void booking() {
+	private void booking() {
 		JLabel labels[] = new JLabel[16];
 		bookingPanel.setLayout(gridAll);
 		gridAll.setVgap(12);
@@ -392,7 +398,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		clearB.addActionListener(this);
 	}
 	
-	public void payment() {
+	private void payment() {
 		JLabel labels[] = new JLabel[14];
 		GridLayout gridP = new GridLayout(13,2);
 		gridP.setVgap(12);
@@ -426,16 +432,17 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		labelError.setText("");
-		error = false;
+	
 		if (e.getSource() == submit) {
 			tabbedPane.setSelectedIndex(tabbedPane.getSelectedIndex() + 1);
-			customer = new Customer(firstName.getText(), lastName.getText(), addr1.getText(), addr2.getText(), city.getText(), state.getText(), zip.getText(), phoneNumber.getText(), emailAddress.getText());
+			double amount = Double.parseDouble(paymentAmount.getText());
+			payment = new Payment(amount, type);
+			customer = new Customer(firstName.getText(), lastName.getText(), addr1.getText(), addr2.getText(), city.getText(), state.getText(), zip.getText(), phoneNumber.getText(), payment);
 			hotel = new Hotel(nameH.getText(), addressLine1H.getText(), addressLine2H.getText(), cityH.getText(), stateH.getText(), zipH.getText());
 			booking = new Booking(bookingDate.getText(), numberOfRooms.getText());
 			booking.setCustomer(customer);
 			booking.setHotel(hotel);
-			payment = new Payment(paymentAmount.getText(), type);
+			
 		} 
 		//Next and back buttons
 		else if(e.getSource() == nextH || e.getSource() == next || e.getSource() == nextP || e.getSource() == nextB) {

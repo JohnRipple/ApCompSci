@@ -9,8 +9,8 @@ public class Customer {
 	private String state;
 	private String zip;
 	private String phoneNumber;
-	private String emailAddress;
-	public Customer(String fn, String ln, String add1, String add2, String ct, String st, String z, String pn, String ea) {
+	private Payment payment;
+	public Customer(String fn, String ln, String add1, String add2, String ct, String st, String z, String pn, Payment p) {
 		firstName = fn;
 		lastName = ln;
 		address1 = add1;
@@ -19,7 +19,7 @@ public class Customer {
 		state = st;
 		zip = z;
 		phoneNumber = pn;
-		emailAddress = ea;
+		payment = p;
 		
 	}
 	
@@ -54,11 +54,16 @@ public class Customer {
 	public void setPhone(String phone) {
 		this.phoneNumber = phone;
 	}
+
 	
-	public void setEmail(String email) {
-		this.emailAddress = email;
+	public Payment getPayment() {
+		return payment;
 	}
-	
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -91,20 +96,6 @@ public class Customer {
 		return phoneNumber;
 	}
 	
-	public String getEmail() {
-		return emailAddress;
-	}
 	
-	
-	
-	/*public static void main(String[] args) {
-		SwingDatabase sd = new SwingDatabase();
-		sd.createAndShowGUI();
-		
-		String[] data = SwingDatabase.getFields();
-		for(int i = 0; i < data.length; i++) {
-			System.out.println(data[i]);
-		}
-	}*/
 	
 }
