@@ -3,11 +3,13 @@
 	<section name="ExternalProjectImportWizard">
 		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
 		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
-		<item value="true" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\John\Desktop\HotelApp"/>
 			<item value=""/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
 			<item value="C:\Users\ripplejr\Desktop\2018-10-30-12-44-27_hotel-domain.zip"/>
 			<item value="C:\Users\ripplejr\Desktop\HotelProject.zip"/>
 		</list>
