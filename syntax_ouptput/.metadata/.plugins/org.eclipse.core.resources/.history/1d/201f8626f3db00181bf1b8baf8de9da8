@@ -3,11 +3,9 @@ package org.legendtitans.com;
 public class Booking {
 	private String bookingDate;
 	private String numberOfRooms;
-	public Booking (String bd, String nr, Customer c) {
+	public Booking (String bd, String nr) {
 		bookingDate = bd;
 		numberOfRooms = nr;
-		customer = c;
-		
 	}
 	
 	Customer customer;

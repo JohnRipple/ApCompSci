@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JFrame;
+import javafx.scene.control.*;
 
 public class HotelGUI implements ActionListener, ChangeListener {
 	
@@ -51,7 +52,6 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	private JButton backP = new JButton("Back");
 	private JButton clearP = new JButton("Clear");
 	private JRadioButton[] paymentT = new JRadioButton[3];
-	ButtonGroup group = new ButtonGroup();
 	
 	//Hotel Variables
 	private JPanel hotelPanel;
@@ -70,10 +70,9 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	private JButton nextH;
 	private JButton clearH;
 	
-	//Objects
+	//Customer
 	Customer customer;
 	private JPanel mainPanel;
-	Booking booking;
 	
 	//Customer Variables
 	private JButton submit;
@@ -294,7 +293,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		review[13] = new JLabel("Phone Number: " + phoneNumber.getText());
 		review[14] = new JLabel("Email Address: " + emailAddress.getText());
 		review[15] = new JLabel("Payment Amount: " + paymentAmount.getText());
-		review[16] = new JLabel("Payment Type: ");
+		review[16] = new JLabel("Payment Type: " + paymentType.getText());
 		review[17] = new JLabel("Booking Date: " + bookingDate.getText());
 		review[18] = new JLabel("Number of Rooms: " + numberOfRooms.getText());
 
@@ -334,24 +333,17 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		review[13].setText("Phone Number: " + phoneNumber.getText());
 		review[14].setText("Email Address: " + emailAddress.getText());
 		review[15].setText("Payment Amount: " + paymentAmount.getText());
+		review[16].setText("Payment Type: " + paymentType.getText());
 		review[17].setText("Booking Date: " + bookingDate.getText());
 		review[18].setText("Number of Rooms: " + numberOfRooms.getText());
-		
-		if(paymentT[0].isSelected()) {
-			review[16].setText("Payment Type: Credit Card");
-		} else if (paymentT[1].isSelected()) {
-			review[16].setText("Payment Type: Debit Card");
-		} else if (paymentT[2].isSelected()) {
-			review[16].setText("Payment Type: Cash");
-		}
 		
 		if(nameH.getText().equals("") || addressLine1H.getText().equals("") || addressLine2H.getText().equals("") || cityH.getText().equals("") || stateH.getText().equals("") || zipH.getText().equals("") || firstName.getText().equals("") || lastName.getText().equals("")) {
 			submit.setEnabled(false);
 		} else if (addr1.getText().equals("") || addr2.getText().equals("") || city.getText().equals("") || state.getText().equals("") || zip.getText().equals("") || phoneNumber.getText().equals("") || emailAddress.getText().equals("")) {
 			submit.setEnabled(false);
-		} else if(paymentAmount.getText().equals("") || bookingDate.getText().equals("") || numberOfRooms.getText().equals("")) {
+		} else if(paymentAmount.getText().equals("") || paymentType.getText().equals("") || bookingDate.getText().equals("") || numberOfRooms.getText().equals("")) {
 			submit.setEnabled(false);
-		} else if(paymentT[0].isSelected() || paymentT[1].isSelected() || paymentT[2].isSelected()) {
+		} else {
 			submit.setEnabled(true);
 		}
 		
@@ -384,7 +376,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	}
 	
 	public void payment() {
-		JLabel labels[] = new JLabel[14];
+		JLabel labels[] = new JLabel[16];
 		GridLayout gridP = new GridLayout(13,2);
 		gridP.setVgap(12);
 		paymentPanel.setLayout(gridP);
@@ -399,6 +391,8 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		paymentPanel.add(labelAmount);
 		paymentPanel.add(paymentAmount);
 		paymentPanel.add(labelType);
+		paymentPanel.add(paymentType);
+		ButtonGroup group = new ButtonGroup();
 		for(int i = 0; i < paymentT.length; i++) {
 			group.add(paymentT[i]);
 			paymentPanel.add(paymentT[i]);
@@ -422,7 +416,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		if (e.getSource() == submit) {
 			tabbedPane.setSelectedIndex(tabbedPane.getSelectedIndex() +1);
 			customer = new Customer(firstName.getText(), lastName.getText(), addr1.getText(), addr2.getText(), city.getText(), state.getText(), zip.getText(), phoneNumber.getText(), emailAddress.getText());
-			booking = new Booking(bookingDate.getText(), numberOfRooms.getText(), customer);
+			
 		} else if(e.getSource() == clear) {
 			firstName.setText("");
 			lastName.setText("");
@@ -447,7 +441,6 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		} else if (e.getSource() == clearP) {
 			paymentAmount.setText("");
 			paymentType.setText("");
-			group.clearSelection();
 		} else if (e.getSource() == clearB) {
 			bookingDate.setText("");
 			numberOfRooms.setText("");

@@ -70,10 +70,9 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	private JButton nextH;
 	private JButton clearH;
 	
-	//Objects
+	//Customer
 	Customer customer;
 	private JPanel mainPanel;
-	Booking booking;
 	
 	//Customer Variables
 	private JButton submit;
@@ -349,9 +348,9 @@ public class HotelGUI implements ActionListener, ChangeListener {
 			submit.setEnabled(false);
 		} else if (addr1.getText().equals("") || addr2.getText().equals("") || city.getText().equals("") || state.getText().equals("") || zip.getText().equals("") || phoneNumber.getText().equals("") || emailAddress.getText().equals("")) {
 			submit.setEnabled(false);
-		} else if(paymentAmount.getText().equals("") || bookingDate.getText().equals("") || numberOfRooms.getText().equals("")) {
+		} else if(paymentAmount.getText().equals("") || paymentType.getText().equals("") || bookingDate.getText().equals("") || numberOfRooms.getText().equals("")) {
 			submit.setEnabled(false);
-		} else if(paymentT[0].isSelected() || paymentT[1].isSelected() || paymentT[2].isSelected()) {
+		} else {
 			submit.setEnabled(true);
 		}
 		
@@ -422,7 +421,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		if (e.getSource() == submit) {
 			tabbedPane.setSelectedIndex(tabbedPane.getSelectedIndex() +1);
 			customer = new Customer(firstName.getText(), lastName.getText(), addr1.getText(), addr2.getText(), city.getText(), state.getText(), zip.getText(), phoneNumber.getText(), emailAddress.getText());
-			booking = new Booking(bookingDate.getText(), numberOfRooms.getText(), customer);
+			
 		} else if(e.getSource() == clear) {
 			firstName.setText("");
 			lastName.setText("");
