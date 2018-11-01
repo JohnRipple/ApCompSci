@@ -1,13 +1,27 @@
-package org.legendtitans.com;
+package org.legendtitans.hotel;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import org.legendtitans.hotel.domain.Booking;
+import org.legendtitans.hotel.domain.Customer;
+import org.legendtitans.hotel.domain.Hotel;
+import org.legendtitans.hotel.domain.Payment;
+import org.legendtitans.hotel.domain.PaymentType;
+
 import javax.swing.JFrame;
 
-public class HotelGUI implements ActionListener, ChangeListener {
+public class HotelAppLauncher implements ActionListener, ChangeListener {
 	
 	public static void main(String[] args) {
 		try {
@@ -16,7 +30,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 		}
 		javax.swing.SwingUtilities.invokeLater(new Runnable() { 
             public void run() { 
-            	HotelGUI hotel = new HotelGUI();
+            	HotelAppLauncher hotel = new HotelAppLauncher();
             	hotel.createAndShowGUI();
             } 
         }); 
@@ -110,7 +124,7 @@ public class HotelGUI implements ActionListener, ChangeListener {
 	private JButton back = new JButton("Back");
 	
 	private void createAndShowGUI() {
-		JFrame mainFrame = new JFrame("Swing Database");
+		JFrame mainFrame = new JFrame("Hotel App");
 		mainFrame.setLayout(new BorderLayout());
 		
 		GridLayout grid = new GridLayout(13,2);
@@ -463,7 +477,9 @@ public class HotelGUI implements ActionListener, ChangeListener {
 			payment = new Payment(amount, type);
 			customer = new Customer(firstName.getText(), lastName.getText(), addr1.getText(), addr2.getText(), city.getText(), state.getText(), zip.getText(), phoneNumber.getText(), payment);
 			hotel = new Hotel(nameH.getText(), addressLine1H.getText(), addressLine2H.getText(), cityH.getText(), stateH.getText(), zipH.getText());
-			booking = new Booking(bookingDate.getText(), numberOfRooms.getText());
+			int num = Integer.parseInt(numberOfRooms.getText());
+			booking = new Booking();
+			//booking.setBookingDate(date);
 			booking.setCustomer(customer);
 			booking.setHotel(hotel);
 			
