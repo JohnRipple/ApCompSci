@@ -38,13 +38,14 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 	}
 	private JTabbedPane tabbedPane;
 	private GridLayout gridAll = new GridLayout(13,2);
+	JFrame mainFrame = new JFrame("Hotel App");
 	
 	//User
 	private JTextField userName = new JTextField();
-	private JTextField passWord = new JTextField();
+	private JPasswordField passWord = new JPasswordField();
 	private JButton enter = new JButton("Enter");
 	private JPanel userGUI = new JPanel();
-	private int start = 0;
+	private JPanel enterButton = new JPanel();
 	
 	//Summary Panel
 	private JPanel summaryPanel;
@@ -124,7 +125,6 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 	private JButton back = new JButton("Back");
 	
 	private void createAndShowGUI() {
-		JFrame mainFrame = new JFrame("Hotel App");
 		mainFrame.setLayout(new BorderLayout());
 		
 		GridLayout grid = new GridLayout(13,2);
@@ -144,31 +144,8 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(grid);
-		mainFrame.add(userGUI);
-		if (start == 0) {
-			user();
-		} else {
-			mainFrame.remove(userGUI);
-			mainFrame.add(tabbedPane, BorderLayout.CENTER);
-			mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
-			
-			//Tabs
-			tabbedPane.addTab("Hotel", hotelPanel);
-			tabbedPane.addTab("Customer", mainPanel);
-			tabbedPane.addTab("Payment", paymentPanel);
-			tabbedPane.addTab("Booking", bookingPanel);
-			tabbedPane.addTab("Review", reviewPanel);
-			tabbedPane.addTab("Summary", summaryPanel);
-			tabbedPane.setEnabledAt(tabbedPane.getTabCount() - 1, false);
-	        
-	        mainPanel();
-	        hotel();
-			payment();
-			booking();
-			review();
-			summary();
-			tabbedPane.addChangeListener(this);
-		}
+		mainFrame.add(userGUI, BorderLayout.CENTER);
+		user();
 		mainFrame.setSize(500,600);
 		mainFrame.setResizable(false);
 		//frame.pack();
@@ -176,11 +153,39 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 		
 	}
 	
+	private void showGUI() {
+		mainFrame.remove(userGUI);
+		mainFrame.remove(enterButton);
+		mainFrame.add(tabbedPane, BorderLayout.CENTER);
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
+		
+		//Tabs
+		tabbedPane.addTab("Hotel", hotelPanel);
+		tabbedPane.addTab("Customer", mainPanel);
+		tabbedPane.addTab("Payment", paymentPanel);
+		tabbedPane.addTab("Booking", bookingPanel);
+		tabbedPane.addTab("Review", reviewPanel);
+		tabbedPane.addTab("Summary", summaryPanel);
+		tabbedPane.setEnabledAt(tabbedPane.getTabCount() - 1, false);
+        
+        mainPanel();
+        hotel();
+		payment();
+		booking();
+		review();
+		summary();
+		tabbedPane.addChangeListener(this);
+	}
+	
 	private void user() {
 		JLabel labels[] = new JLabel[20];
 		userGUI.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
+		enterButton.setLayout(new GridLayout(1,1));
+		enterButton.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		mainFrame.add(enterButton, BorderLayout.SOUTH);
 		JLabel username =  new JLabel("User Name: ");
 		JLabel password = new JLabel("Password: ");
+		
 		userGUI.setLayout(gridAll);
 		userGUI.add(username);
 		userGUI.add(userName);
@@ -190,7 +195,7 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 			labels[i] = new JLabel("");
 			userGUI.add(labels[i]);
 		}
-		userGUI.add(enter);
+		enterButton.add(enter);
 		enter.addActionListener(this);
 	}
 	
@@ -516,9 +521,8 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 			phoneNumber.setText("");
 			emailAddress.setText("");
 		} else if (e.getSource() == enter) {
-			if(userName.getText().equals("h") && passWord.getText().equals("1")) {
-				start = 1;
-				createAndShowGUI();
+			if(userName.getText().equals("ripplejr") && passWord.getText().equals("12345")) {
+				showGUI();
 			}
 			
 		}
