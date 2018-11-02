@@ -2,8 +2,9 @@ package org.legendtitans.hotel;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Date;
+import java.util.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,6 +41,7 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 	private GridLayout gridAll = new GridLayout(13,2);
 	JFrame mainFrame = new JFrame("Hotel App");
 	
+	
 	//User
 	private JTextField userName = new JTextField();
 	private JPasswordField passWord = new JPasswordField();
@@ -58,11 +60,12 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 	
 	//Booking Variables
 	private JPanel bookingPanel;
-	private JTextField bookingDate = new JTextField();
+	private JTextField bookingDate = new JTextField("dd-MM-yyyy");
 	private JTextField numberOfRooms = new JTextField();
 	private JButton nextB = new JButton("Next");
 	private JButton backB = new JButton("Back");
 	private JButton clearB = new JButton("Clear");
+	private Date myDate;
 	
 	//Payment Variables
 	private JPanel paymentPanel;
@@ -484,7 +487,16 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 			hotel = new Hotel(nameH.getText(), addressLine1H.getText(), addressLine2H.getText(), cityH.getText(), stateH.getText(), zipH.getText());
 			int num = Integer.parseInt(numberOfRooms.getText());
 			booking = new Booking();
-			//booking.setBookingDate(date);
+			try {
+				DateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
+				myDate = DF.parse(bookingDate.getText());
+				System.out.println(myDate.toString());
+				
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			booking.setBookingDate(myDate);
 			booking.setCustomer(customer);
 			booking.setHotel(hotel);
 			
@@ -523,6 +535,8 @@ public class HotelAppLauncher implements ActionListener, ChangeListener {
 		} else if (e.getSource() == enter) {
 			if(userName.getText().equals("ripplejr") && passWord.getText().equals("12345")) {
 				showGUI();
+			} else {
+				System.out.println("Heck You!");
 			}
 			
 		}
