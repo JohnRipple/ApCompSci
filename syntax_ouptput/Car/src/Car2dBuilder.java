@@ -24,6 +24,7 @@ public class Car2dBuilder {
 				myCars[i][j] = new Car(make[rand], model[mo], color[co]);
 				System.out.println("Location [" + i + "]" + "[" + j + "] = " + myCars[i][j].getMake() + " " + myCars[i][j].getModel() + " " + myCars[i][j].getColor());
 			}
+
 		}
 	}
 }

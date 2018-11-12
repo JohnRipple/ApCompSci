@@ -104,7 +104,7 @@
                 </children>
               </children>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_l-HJeuRVEeiUgIlsVh3hWw" containerData="7500" selectedElement="_l-HJe-RVEeiUgIlsVh3hWw">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_l-HJeuRVEeiUgIlsVh3hWw" containerData="7500" selectedElement="_l-HJhORVEeiUgIlsVh3hWw">
               <children xsi:type="basic:PartSashContainer" xmi:id="_l-HJe-RVEeiUgIlsVh3hWw" containerData="7500" selectedElement="_l-HJfORVEeiUgIlsVh3hWw" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_l-HJfORVEeiUgIlsVh3hWw" elementId="org.eclipse.ui.editorss" containerData="7500" ref="_v7XEZNYuEeiQYbuW7KzYrQ"/>
                 <children xsi:type="basic:PartSashContainer" xmi:id="_l-HJfeRVEeiUgIlsVh3hWw" containerData="2500" selectedElement="_l-HJfuRVEeiUgIlsVh3hWw">
@@ -212,13 +212,13 @@
         <tags>EditorStack</tags>
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_K9M4AON9Eei2pN5ES9Qn6w" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Car.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Car.java&quot; partName=&quot;Car.java&quot; title=&quot;Car.java&quot; tooltip=&quot;Car/src/Car.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Car/src/Car.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;517&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Car.java&quot; partName=&quot;Car.java&quot; title=&quot;Car.java&quot; tooltip=&quot;Car/src/Car.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Car/src/Car.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;294&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_9dk34OOBEei2pN5ES9Qn6w" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Car2dBuilder.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Car2dBuilder.java&quot; partName=&quot;Car2dBuilder.java&quot; title=&quot;Car2dBuilder.java&quot; tooltip=&quot;Car/src/Car2dBuilder.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Car/src/Car2dBuilder.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;314&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Car2dBuilder.java&quot; partName=&quot;Car2dBuilder.java&quot; title=&quot;Car2dBuilder.java&quot; tooltip=&quot;Car/src/Car2dBuilder.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Car/src/Car2dBuilder.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1013&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
@@ -393,7 +393,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_v7XE1dYuEeiQYbuW7KzYrQ" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_bLQcI-RbEeiNc4bQaUjsqA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_v7XOANYuEeiQYbuW7KzYrQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_KlQAEOa0EeimK9T89GAvsw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_v7XOANYuEeiQYbuW7KzYrQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_v7XE4tYuEeiQYbuW7KzYrQ" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -424,7 +424,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_v7XFJ9YuEeiQYbuW7KzYrQ" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_bLQcMORbEeiNc4bQaUjsqA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_v7XNctYuEeiQYbuW7KzYrQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_KlQAHea0EeimK9T89GAvsw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_v7XNctYuEeiQYbuW7KzYrQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_v7XFMdYuEeiQYbuW7KzYrQ" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>

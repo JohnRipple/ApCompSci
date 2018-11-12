@@ -32,5 +32,15 @@ public class Car {
 	public void setColor(String clr) {
 		color = clr;
 	}
+	
+	@Override
+	public String toString() {
+		return "make= "+ make + ", model= " + model + ", and color= " + color;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Car inCar = (Car)(obj);
+	}
 
 }
