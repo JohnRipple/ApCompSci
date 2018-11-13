@@ -1,14 +1,58 @@
 public class Car {
-	private String make;
+	/*private String make;
 	private String model;
-	private String color;
+	private String color;*/
+	private boolean isHatchback;
+	private boolean isSUV;
 
-	public Car(String mk, String mdl, String c) {
+	/*public Car(String mk, String mdl, String c) {
 		make = mk;
 		model = mdl;
 		color = c;
+	}*/
+	
+	public Car(boolean n, boolean s) {
+		isHatchback = n;
+		isSUV = s;
+	}
+	
+	public Car() {
+		
+	}
+	
+	public boolean getIsHatchback() {
+		return isHatchback;
+	}
+	
+	public void setIsHatchback(boolean n) {
+		isHatchback = n;
+	}
+	
+	public boolean getIsSUV() {
+		return isSUV;
+	}
+	
+	public void setIsSUV(boolean s) {
+		isSUV = s;
 	}
 
+	@Override
+	public String toString() {
+		return "Car [numSeats=" + isHatchback + ", isSUV=" + isSUV + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Car c = (Car)obj;
+		if(c.getIsSUV() == (this.getIsSUV()) && c.getIsHatchback() == (this.getIsHatchback())) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	
+	/*
 	public String getMake() {
 		return make;
 	}
@@ -45,6 +89,6 @@ public class Car {
 			return true;
 		} 
 		return false;
-	}
+	}*/
 
 }
