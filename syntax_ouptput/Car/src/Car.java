@@ -41,6 +41,10 @@ public class Car {
 	@Override
 	public boolean equals(Object obj) {
 		Car inCar = (Car)(obj);
+		if(this.toString().equals(inCar.toString())) {
+			return true;
+		} 
+		return false;
 	}
 
 }

@@ -24,7 +24,14 @@ public class Car2dBuilder {
 				myCars[i][j] = new Car(make[rand], model[mo], color[co]);
 				System.out.println("Location [" + i + "]" + "[" + j + "] = " + myCars[i][j].getMake() + " " + myCars[i][j].getModel() + " " + myCars[i][j].getColor());
 			}
-
+		}
+		Car[] cars = new Car[2];
+		cars[0] = new Car("Toyota", "Rav4", "Blue");
+		cars[1] = new Car("Toyota", "Rav4", "Blue");
+		if(cars[0].equals(cars[1])) {
+			System.out.println("Yeah");
+		} else {
+			System.out.println("Yeah'nt");
 		}
 	}
 }
