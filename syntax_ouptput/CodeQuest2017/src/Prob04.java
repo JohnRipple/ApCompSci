@@ -21,15 +21,15 @@ public class Prob04 {
                 int b = 0;
                 int c = 1;
                 int d = 0;
-                for(int i = 1; i < 5; i++) {
+                for(int i = 1; i < a-1; i++) {
                 	d = b + c;
                 	if (i % 2 == 0) {
                 		c = d;
                 	} else {
                 		b = d;
                 	}
-                	System.out.println(d);
                 }
+                System.out.println(a + " = " + d);
                 
                 T--;
 	        }
