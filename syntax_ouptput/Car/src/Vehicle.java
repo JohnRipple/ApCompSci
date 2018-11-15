@@ -1,15 +1,23 @@
 
 public class Vehicle {
-	private int year = 2018;
-	private int mileage = 0;
-	private int numSeats = 0;
+	private int year;
+	private int mileage;
+	private int numSeats;
 	private String model;
 	private String color;
 	private String make;
 	private String plateNumber;
 	
 	public Vehicle() {
-		
+		numSeats = 0;
+		year = 2018;
+		mileage = 0;
+	}
+	
+	public Vehicle(String mk, String mdl, String c) {
+		make = mk;
+		model = mdl;
+		color = c;
 	}
 	
 	public Vehicle(int y, int m, int n, String ma, String mo, String co, String pn) {

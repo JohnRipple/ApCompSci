@@ -1,23 +1,27 @@
-public class Car {
+public class Car extends Vehicle{
 	/*private String make;
 	private String model;
 	private String color;*/
 	private boolean isHatchback;
 	private boolean isSUV;
 
-	/*public Car(String mk, String mdl, String c) {
-		make = mk;
-		model = mdl;
-		color = c;
-	}*/
+	public Car(String mk, String mdl, String c) {
+		super(mk, mdl, c);
+	}
 	
+	public Car(boolean a, boolean s, int y, int m, int n, String ma, String mo, String co, String pn) {
+		super(y, m, n , ma, mo, co, pn);
+		isHatchback = a;
+		isSUV = s;
+	}
 	public Car(boolean n, boolean s) {
 		isHatchback = n;
 		isSUV = s;
 	}
 	
 	public Car() {
-		
+		isHatchback = false;
+		isSUV = false;
 	}
 	
 	public boolean getIsHatchback() {
@@ -38,13 +42,18 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car [numSeats=" + isHatchback + ", isSUV=" + isSUV + "]";
+		return "Car [isHatchback=" + isHatchback + ", isSUV=" + isSUV + ", getYear()=" + getYear() + ", getMileage()="
+				+ getMileage() + ", getNumSeats()=" + getNumSeats() + ", getMake()=" + getMake() + ", getModel()="
+				+ getModel() + ", getColor()=" + getColor() + ", getPlateNumber()=" + getPlateNumber() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		Car c = (Car)obj;
-		if(c.getIsSUV() == (this.getIsSUV()) && c.getIsHatchback() == (this.getIsHatchback())) {
+		if(c.getIsSUV() == (this.getIsSUV()) && c.getIsHatchback() == (this.getIsHatchback()) && c.getColor().equals(this.getColor()) 
+				&& c.getMake().equals(this.getMake()) && (c.getMileage() == this.getMileage()) && this.getModel().equals(c.getModel()) && (c.getNumSeats() == this.getNumSeats()) 
+				&& c.getPlateNumber().equals(this.getPlateNumber()) && c.getYear() == this.getYear()) {
 			return true;
 		}
 		
