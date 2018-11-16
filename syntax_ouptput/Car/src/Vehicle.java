@@ -30,6 +30,10 @@ public class Vehicle {
 		plateNumber = pn;
 	}
 	
+	public String makeHornSound() {
+		return "generererereric horn sound";
+	}
+	
 	public int getYear() {
 		return year;
 	}

@@ -10,5 +10,6 @@ public class VehicleLauncher {
 		System.out.println(b.toString());
 		System.out.println(t.toString());
 		System.out.println(v.toString());
+		System.out.println(t.makeHornSound());
 	}
 }

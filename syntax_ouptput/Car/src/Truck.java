@@ -42,4 +42,9 @@ public class Truck extends Vehicle {
 		
 		return false;
 	}
+	
+	@Override
+	public String makeHornSound() {
+		return "BWAMP BWAMP BEEP BEEP BEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEP";
+	}
  }

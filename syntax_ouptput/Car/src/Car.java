@@ -59,7 +59,11 @@ public class Car extends Vehicle{
 		
 		return false;
 	}
-
+	
+	@Override
+	public String makeHornSound() {
+		return "Beep Beep Beepn't";
+	}
 	
 	/*
 	public String getMake() {
