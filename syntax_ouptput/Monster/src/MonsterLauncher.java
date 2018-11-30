@@ -1,8 +1,14 @@
+import java.util.*;
 public class MonsterLauncher {
 	private static Monster[] menster = new Monster[12]; 
 	private static Monster[] menster2 = new Monster[12];
 	private static Monster[][] m;
+	 
 	public static void main(String[] args) {
+		
+		for(int i = 0; i < 10; i++) {
+			
+		}
 		int max = 3;
 		int min = 0;
 		int rows = 4;
@@ -27,8 +33,8 @@ public class MonsterLauncher {
 				menster[i] = new Vampire(names[ran], d[ran1], in[ran2]);
 				menster2[i] = new Vampire(names[ran], d[ran1], in[ran2]);
 			}
-			System.out.println("Location[" + i + "]: " + menster[i]);
-			System.out.println("Location[" + i + "]: " + menster2[i]);
+			//System.out.println("Location[" + i + "]: " + menster[i]);
+			//System.out.println("Location[" + i + "]: " + menster2[i]);
 		}
 		r = 0;
 		c = 0;
@@ -36,9 +42,11 @@ public class MonsterLauncher {
 		for(int i = 0; i < columns; i++) {
 			r = 0;
 			int math =(int)(( Math.random () * (max - min + 1)) + min);
+			
 				for(int j = 0; j < rows; j++) {
 					math =(int) (Math.floor( Math.random () * (max - min + 1)) + min);
-					if(math == 1) {
+					int math1 = (int)(Math.random()*12);
+					/*if(math == 1) {
 						Check();
 						m[c][r] = new WereWolf();
 					} else if (math == 2) {
@@ -47,23 +55,26 @@ public class MonsterLauncher {
 					} else {
 						Check();
 						m[c][r] = new Zombie();
-					}
-					//System.out.println("Location[" + c + "]["+ r + "]: " + m[c][r]);
+					}*/
+					
+					m[c][r] = menster[math1];
+					//System.out.println(b);
+					System.out.println("Location[" + c + "]["+ r + "]: " + m[c][r]);
 					r++;
 				}
 			c++;
 		}
 	}
-	
-	private static boolean Check() {
-		int c = 0, r = 0;
-		for(int i = 0; i < 6; i++) {
-			for(int j = 0; j < 4; j++) {
-				
-				r++;
-			}
-			c++;
-		}
-		return false;
+	public void pickName() {
+		List<String> name = new ArrayList( Arrays.asList("Terminator", "Slicer","Ninja", "cow", "Robot", "littlegirl" ));
+	    List<String> remaining = name;
+		if (remaining.isEmpty()) {
+            // could refill 'remaining' here.. but we'll just throw, for now.
+            throw new IllegalStateException("names all used");
+        }
+		int index = (int) (Math.random() * remaining.size());
+        String result = remaining.remove( index);
+        System.out.println(result);
 	}
+	
 }
