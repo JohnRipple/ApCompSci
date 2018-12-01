@@ -24,7 +24,11 @@ public class Vampire extends Monster {
 	public double getStrength() {
 		return strength;
 	}
-
+	
+	public double getDouble(){
+		return strength;
+	}
+	
 	public void setStrength(double s) {
 		strength = s;
 	}
@@ -39,6 +43,15 @@ public class Vampire extends Monster {
 
 	public String toString() {
 		return "Vampire: Age = " + age + " Strength = " + strength + " Name = " + getMyname(); 
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Vampire v = (Vampire)obj;
+		if(v.getAge() == this.getAge() && v.getDouble() == this.getDouble() && v.getMyname().equals(this.getMyname())) {
+			return true;
+		}
+		return false;
 	}
 
 }

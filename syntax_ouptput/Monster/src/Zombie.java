@@ -24,6 +24,9 @@ public class Zombie extends Monster {
 		return weight;
 	}
 
+	public double getDouble(){
+		return weight;
+	}
 	public void setWeight(double w) {
 		weight = w;
 	}
@@ -38,6 +41,15 @@ public class Zombie extends Monster {
 
 	public String toString() {
 		return "Zombie: Age = " + age + " Weight = " + weight + " Name = " + getMyname();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Zombie v = (Zombie)obj;
+		if(v.getAge() == this.getAge() && v.getDouble() == this.getDouble() && v.getMyname().equals(this.getMyname())) {
+			return true;
+		}
+		return false;
 	}
 
 }
