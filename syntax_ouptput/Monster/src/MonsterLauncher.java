@@ -13,17 +13,33 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 public class MonsterLauncher implements ActionListener {
-	private static Monster[] menster = new Monster[12]; 
-	private static Monster[] menster2 = new Monster[12];
-	private static Monster[][] m;
 	private static int columns = 6, rows = 4;
+	private static Monster[] menster = new Monster[columns*rows/2]; 
+	private static Monster[][] m;
+	
+	private JFrame mainFrame = new JFrame("Memory Game");
+	private JPanel mainPanel = new JPanel();
+	private JButton[] monsterNames = new JButton[columns*rows];
+	private JPanel secondaryPanel = new JPanel();
+	private int source1 = -1, source2 = -1;
+	private boolean resetColors = false;
+	private int correct = 0, wrong = 0;
+	private JLabel[] winsLoss = new JLabel[3];
+	private JButton reveal = new JButton("Reveal");
+	private boolean reveal1 = false;
 	 
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Exception ignored) {
+		}
+		
 		int max = 3;
 		int min = 0;
 		int r = 0, c = 0;
-		String[] names = {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven","Twelve"};
+		String[] names = {"Bob", "Joe", "John", "Ryan", "Clint", "TJ", "Yibo", "Bryan", "Cam", "Eric", "Kyle","Andy"};
 		double[] d = {1,2,3,4,5,6,7,8,9,10,11,12};
 		int[] in = {1,2,3,4,5,6,7,8,9,10,11,12};
 		
@@ -34,19 +50,16 @@ public class MonsterLauncher implements ActionListener {
 			int mon = (int)(Math.random()*3);
 			if(mon == 0) {
 				menster[i] = new Zombie(names[ran], d[ran1], in[ran2]);
-				menster2[i] = new Zombie(names[ran], d[ran1], in[ran2]);
 				name.add(menster[i]);
-				name.add(menster2[i]);
+				name.add(menster[i]);
 			} else if (mon == 1) {
 				menster[i] = new WereWolf(names[ran], d[ran1], in[ran2]);
-				menster2[i] = new WereWolf(names[ran], d[ran1], in[ran2]);
 				name.add(menster[i]);
-				name.add(menster2[i]);
+				name.add(menster[i]);
 			} else {
 				menster[i] = new Vampire(names[ran], d[ran1], in[ran2]);
-				menster2[i] = new Vampire(names[ran], d[ran1], in[ran2]);
 				name.add(menster[i]);
-				name.add(menster2[i]);
+				name.add(menster[i]);
 			}
 		}
 		
@@ -55,10 +68,7 @@ public class MonsterLauncher implements ActionListener {
 		m = new Monster[columns][rows];
 		for(int i = 0; i < columns; i++) {
 			r = 0;
-			int math =(int)(( Math.random () * (max - min + 1)) + min);
-			
 				for(int j = 0; j < rows; j++) {
-					math =(int) (Math.floor( Math.random () * (max - min + 1)) + min);
 					pickName(c, r);
 					//System.out.println("Location[" + c + "]["+ r + "]: " + m[c][r]);
 					r++;
@@ -82,15 +92,6 @@ public class MonsterLauncher implements ActionListener {
         m[c][r] = remaining.remove(index);
 	}
 	
-	private JFrame mainFrame = new JFrame("Memory Game");
-	private JPanel mainPanel = new JPanel();
-	private JButton[] monsterNames = new JButton[columns*rows];
-	private JPanel secondaryPanel = new JPanel();
-	private int source1 = -1, source2 = -1;
-	private boolean resetColors = false;
-	private int correct = 0, wrong = 0;
-	private JLabel[] winsLoss = new JLabel[3];
-	
 	private void CreateAndShowGUI() {
 		int c = 0, r = 0;
 		mainFrame.setLayout(new BorderLayout());
@@ -101,10 +102,14 @@ public class MonsterLauncher implements ActionListener {
 		mainPanel.setLayout(grid);
 		mainFrame.add(mainPanel, BorderLayout.CENTER);
 		mainFrame.add(secondaryPanel, BorderLayout.SOUTH);
-		winsLoss[0] = new JLabel("Wins: " + correct);
-		winsLoss[1] = new JLabel("Loss: " + wrong);
+		winsLoss[0] = new JLabel("Correct Guesses: " + correct + " ");
+		winsLoss[1] = new JLabel("Incorrect Guesses: " + wrong);
+		secondaryPanel.setLayout(new GridLayout(2,3));
 		secondaryPanel.add(winsLoss[0]);
+		winsLoss[0].setHorizontalAlignment(JLabel.RIGHT);
 		secondaryPanel.add(winsLoss[1]);
+		secondaryPanel.add(reveal);
+		reveal.addActionListener(this);
 		int restart = 0;
 		for(int i = 0; i < columns*rows; i++) {	
 			if (restart == 1) {
@@ -124,9 +129,8 @@ public class MonsterLauncher implements ActionListener {
 			}
 		}
 		
-		
 		mainFrame.setSize(1800,400);
-		mainFrame.setResizable(false);
+		mainFrame.setResizable(true);
 		mainFrame.pack();
         mainFrame.setVisible(true);
         System.out.println(mainPanel.getSize().getHeight());
@@ -152,9 +156,12 @@ public class MonsterLauncher implements ActionListener {
 					source1 = i;
 				}
 				monsterNames[i].setForeground(new Color(0,0,0));
+			} else if(e.getSource() == reveal) {
+				if(reveal1 == false) monsterNames[i].setForeground(new Color(0,0,0)); 
+				else if (monsterNames[i].isEnabled()) monsterNames[i].setForeground(new Color(0,0,0,0));
 			}
-			
 		}
+		if (reveal1 == false) reveal1 = true; else reveal1 = false;
 		System.out.println("Source1: " + source1 + " Source2: " + source2);
 	}
 	
@@ -164,7 +171,7 @@ public class MonsterLauncher implements ActionListener {
 			monsterNames[source1].setEnabled(false);
 			monsterNames[source2].setEnabled(false);
 			correct++;
-			winsLoss[0].setText("Wins: " + correct);
+			winsLoss[0].setText("Correct Guesses: " + correct + " ");
 			if(correct == (columns * rows / 2 )) {
 				winsLoss[2] = new JLabel("You Win!");
 				secondaryPanel.add(winsLoss[2]);
@@ -173,7 +180,7 @@ public class MonsterLauncher implements ActionListener {
 			System.out.println("False my dude");
 			resetColors = true;
 			wrong++;
-			winsLoss[1].setText("Loss: " + wrong);
+			winsLoss[1].setText("Incorrect Guesses: " + wrong);
 		}
 	}
 }
