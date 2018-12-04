@@ -28,14 +28,25 @@ public class MonsterLauncher implements ActionListener {
 	private int correct = 0, wrong = 0;
 	private JLabel[] winsLoss = new JLabel[3];
 	private JButton reveal = new JButton("Reveal");
-	private boolean reveal1 = false;
+	private boolean reveal1 = false; 
+	private static boolean reveal2 = false;
+	private JButton play = new JButton("Play");
+	private boolean restart = false;
 	 
 	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-		} catch (Exception ignored) {
+		initialize();
+		MonsterLauncher monLan = new MonsterLauncher();
+		monLan.CreateAndShowGUI();
+		if (reveal2 == false) {
+			try {
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			} catch (Exception ignored) {
+			}
+			reveal2 = true;
 		}
-		
+	}
+	
+	private static void initialize() {
 		int max = 3;
 		int min = 0;
 		int r = 0, c = 0;
@@ -75,8 +86,6 @@ public class MonsterLauncher implements ActionListener {
 				}
 			c++;
 		}
-		MonsterLauncher monLan = new MonsterLauncher();
-		monLan.CreateAndShowGUI();
 	}
 	
 	private static List<Monster> name = new ArrayList();
@@ -109,7 +118,9 @@ public class MonsterLauncher implements ActionListener {
 		winsLoss[0].setHorizontalAlignment(JLabel.RIGHT);
 		secondaryPanel.add(winsLoss[1]);
 		secondaryPanel.add(reveal);
+		secondaryPanel.add(play);
 		reveal.addActionListener(this);
+		play.addActionListener(this);
 		int restart = 0;
 		for(int i = 0; i < columns*rows; i++) {	
 			if (restart == 1) {
@@ -119,6 +130,7 @@ public class MonsterLauncher implements ActionListener {
 			monsterNames[i] = new JButton(m[c][r].toString());
 			monsterNames[i].addActionListener(this);
 			monsterNames[i].setForeground(new Color(255,255,255,0));
+			monsterNames[i].setEnabled(false);
 			mainPanel.add(monsterNames[i]);
 			monsterNames[i].setPreferredSize(new Dimension(300, 100));
 			if(r < rows-1) {
@@ -142,6 +154,12 @@ public class MonsterLauncher implements ActionListener {
 				resetColors = false;
 				monsterNames[source1].setForeground(new Color(0,0,0,0));
 				monsterNames[source2].setForeground(new Color(0,0,0,0));
+				monsterNames[source1].setBackground(null);
+				monsterNames[source2].setBackground(null);
+				try {
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				} catch (Exception ignored) {
+				}
 			}
 			source1 = -1;
 			source2 = -1;
@@ -149,6 +167,7 @@ public class MonsterLauncher implements ActionListener {
 
 		for(int i = 0; i < columns*rows; i++) {
 			if(e.getSource() == monsterNames[i]) {
+				color(monsterNames[i]);
 				if(source1 != -1 && source2 == -1) {
 					source2 = i;
 					check();
@@ -159,6 +178,17 @@ public class MonsterLauncher implements ActionListener {
 			} else if(e.getSource() == reveal) {
 				if(reveal1 == false) monsterNames[i].setForeground(new Color(0,0,0)); 
 				else if (monsterNames[i].isEnabled()) monsterNames[i].setForeground(new Color(0,0,0,0));
+			} else if (e.getSource() == play) {
+				monsterNames[i].setEnabled(true);
+			}
+		}
+		if(e.getSource() == play) {
+			if(restart == false) {
+				play.setEnabled(false);
+				restart = true;
+			} else {
+				initialize();
+				restart = false;
 			}
 		}
 		if (reveal1 == false) reveal1 = true; else reveal1 = false;
@@ -181,6 +211,20 @@ public class MonsterLauncher implements ActionListener {
 			resetColors = true;
 			wrong++;
 			winsLoss[1].setText("Incorrect Guesses: " + wrong);
+		}
+	}
+	
+	public void color(JButton m) {
+		char[] c = m.getText().toCharArray();
+		if(c[0] == 'V') {
+			m.setBackground(Color.red);
+			m.setOpaque(true);
+		} else if(c[0] == 'W') {
+			m.setBackground(Color.green);
+			m.setOpaque(true);
+		} else {
+			m.setBackground(Color.yellow);
+			m.setOpaque(true);
 		}
 	}
 }
