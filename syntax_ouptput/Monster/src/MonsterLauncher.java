@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 public class MonsterLauncher implements ActionListener {
-	private static int columns = 6, rows = 4;
+	private static int columns = 4, rows = 4;
 	private static Monster[] menster = new Monster[columns*rows/2]; 
 	private static Monster[][] m;
 	
@@ -34,6 +35,7 @@ public class MonsterLauncher implements ActionListener {
 	private boolean restart = false;
 	 
 	public static void main(String[] args) {
+		
 		initialize();
 		MonsterLauncher monLan = new MonsterLauncher();
 		monLan.CreateAndShowGUI();
@@ -128,11 +130,13 @@ public class MonsterLauncher implements ActionListener {
 				r = 0;
 			}
 			monsterNames[i] = new JButton(m[c][r].toString());
+			monsterNames[i].setText("");
 			monsterNames[i].addActionListener(this);
 			monsterNames[i].setForeground(new Color(255,255,255,0));
 			monsterNames[i].setEnabled(false);
 			mainPanel.add(monsterNames[i]);
 			monsterNames[i].setPreferredSize(new Dimension(300, 100));
+			
 			if(r < rows-1) {
 				r++;
 			} else {
@@ -156,10 +160,10 @@ public class MonsterLauncher implements ActionListener {
 				monsterNames[source2].setForeground(new Color(0,0,0,0));
 				monsterNames[source1].setBackground(null);
 				monsterNames[source2].setBackground(null);
-				try {
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-				} catch (Exception ignored) {
-				}
+				//try {
+					//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				//} catch (Exception ignored) {
+				//}
 			}
 			source1 = -1;
 			source2 = -1;
@@ -180,15 +184,38 @@ public class MonsterLauncher implements ActionListener {
 				else if (monsterNames[i].isEnabled()) monsterNames[i].setForeground(new Color(0,0,0,0));
 			} else if (e.getSource() == play) {
 				monsterNames[i].setEnabled(true);
+				play.setEnabled(false);
 			}
 		}
 		if(e.getSource() == play) {
-			if(restart == false) {
-				play.setEnabled(false);
-				restart = true;
-			} else {
-				initialize();
-				restart = false;
+
+			initialize();
+			for(int i = 0; i < menster.length; i++) {
+				System.out.println(menster[i]);
+			}
+			int r = 0, c = 0;
+			int restart = 0;
+			for(int i = 0; i < columns*rows; i++) {	
+				if (restart == 1) {
+					restart = 0; 
+					r = 0;
+				}
+				monsterNames[i].setText(m[c][r].toString());
+				monsterNames[i].setForeground(new Color(255,255,255,0));
+				if(r < rows-1) {
+					r++;
+				} else {
+					c++;
+					restart = 1;
+				}
+			}
+			if (correct > 0) {
+				wrong = 0;
+				correct = 0;
+				secondaryPanel.remove(winsLoss[2]);
+				for(int i = 0; i < monsterNames.length; i++) {
+					monsterNames[i].setBackground(null);
+				}
 			}
 		}
 		if (reveal1 == false) reveal1 = true; else reveal1 = false;
@@ -200,11 +227,20 @@ public class MonsterLauncher implements ActionListener {
 			System.out.println("YEAHHH; true");
 			monsterNames[source1].setEnabled(false);
 			monsterNames[source2].setEnabled(false);
+			JLabel l = new JLabel(monsterNames[source1].getText());
+			JLabel l2 = new JLabel(monsterNames[source2].getText());
+			monsterNames[source1].add(l);
+			Font font = new Font("Courier", Font.BOLD,12);
+			l.setFont(font);
+			monsterNames[source1].setHorizontalAlignment(JLabel.CENTER);
+			monsterNames[source2].add(l2);
+			
 			correct++;
 			winsLoss[0].setText("Correct Guesses: " + correct + " ");
 			if(correct == (columns * rows / 2 )) {
 				winsLoss[2] = new JLabel("You Win!");
 				secondaryPanel.add(winsLoss[2]);
+				play.setEnabled(true);
 			}
 		} else {
 			System.out.println("False my dude");
