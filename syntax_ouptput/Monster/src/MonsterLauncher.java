@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-public class MonsterLauncher implements ActionListener {
-	private static int columns = 4, rows = 4;
+public class MonsterLauncher implements ActionListener{
+	private static int columns = 2, rows = 2;
 	private static Monster[] menster = new Monster[columns*rows/2]; 
 	private static Monster[][] m;
 	
@@ -30,7 +30,6 @@ public class MonsterLauncher implements ActionListener {
 	private JLabel[] winsLoss = new JLabel[3];
 	private JButton reveal = new JButton("Reveal");
 	private boolean reveal1 = false; 
-	private static boolean reveal2 = false;
 	private JButton play = new JButton("Play");
 	private boolean restart = false;
 	 
@@ -39,13 +38,11 @@ public class MonsterLauncher implements ActionListener {
 		initialize();
 		MonsterLauncher monLan = new MonsterLauncher();
 		monLan.CreateAndShowGUI();
-		if (reveal2 == false) {
-			try {
+			/*try {
 				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			} catch (Exception ignored) {
-			}
-			reveal2 = true;
-		}
+			}*/
+			
 	}
 	
 	private static void initialize() {
@@ -160,10 +157,10 @@ public class MonsterLauncher implements ActionListener {
 				monsterNames[source2].setForeground(new Color(0,0,0,0));
 				monsterNames[source1].setBackground(null);
 				monsterNames[source2].setBackground(null);
-				//try {
-					//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-				//} catch (Exception ignored) {
-				//}
+				/*try {
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				} catch (Exception ignored) {
+				}*/
 			}
 			source1 = -1;
 			source2 = -1;
@@ -227,14 +224,6 @@ public class MonsterLauncher implements ActionListener {
 			System.out.println("YEAHHH; true");
 			monsterNames[source1].setEnabled(false);
 			monsterNames[source2].setEnabled(false);
-			JLabel l = new JLabel(monsterNames[source1].getText());
-			JLabel l2 = new JLabel(monsterNames[source2].getText());
-			monsterNames[source1].add(l);
-			Font font = new Font("Courier", Font.BOLD,12);
-			l.setFont(font);
-			monsterNames[source1].setHorizontalAlignment(JLabel.CENTER);
-			monsterNames[source2].add(l2);
-			
 			correct++;
 			winsLoss[0].setText("Correct Guesses: " + correct + " ");
 			if(correct == (columns * rows / 2 )) {
@@ -263,4 +252,5 @@ public class MonsterLauncher implements ActionListener {
 			m.setOpaque(true);
 		}
 	}
+
 }
