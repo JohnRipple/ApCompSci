@@ -1,3 +1,4 @@
+package org.lhs.dcsdk12;
 public class WereWolf extends Monster {
 	private double speed;
 	private int age;

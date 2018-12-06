@@ -1,3 +1,4 @@
+package org.lhs.dcsdk12;
 public class Zombie extends Monster {
 	private int age;
 	private double weight;

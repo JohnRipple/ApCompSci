@@ -1,3 +1,4 @@
+package org.lhs.dcsdk12;
 
 public class Vampire extends Monster {
 	private int age;

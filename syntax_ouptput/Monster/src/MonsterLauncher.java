@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import org.lhs.dcsdk12.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -16,7 +17,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 public class MonsterLauncher implements ActionListener{
-	private static int columns = 2, rows = 2;
+	private static int columns = 4, rows = 4;
 	private static Monster[] menster = new Monster[columns*rows/2]; 
 	private static Monster[][] m;
 	
