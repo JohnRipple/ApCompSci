@@ -35,15 +35,9 @@ public class MonsterLauncher implements ActionListener{
 	private boolean restart = false;
 	 
 	public static void main(String[] args) {
-		
 		initialize();
 		MonsterLauncher monLan = new MonsterLauncher();
 		monLan.CreateAndShowGUI();
-			/*try {
-				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-			} catch (Exception ignored) {
-			}*/
-			
 	}
 	
 	private static void initialize() {
@@ -93,11 +87,9 @@ public class MonsterLauncher implements ActionListener{
 	public static void pickName(int c, int r) {
 		
 		if (remaining.isEmpty()) {
-            // could refill 'remaining' here.. but we'll just throw, for now.
             throw new IllegalStateException("names all used");
         }
 		int index = (int) (Math.random() * remaining.size());
-        //String result = remaining.remove( index).toString();
         m[c][r] = remaining.remove(index);
 	}
 	
@@ -158,10 +150,6 @@ public class MonsterLauncher implements ActionListener{
 				monsterNames[source2].setForeground(new Color(0,0,0,0));
 				monsterNames[source1].setBackground(null);
 				monsterNames[source2].setBackground(null);
-				/*try {
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-				} catch (Exception ignored) {
-				}*/
 			}
 			source1 = -1;
 			source2 = -1;
