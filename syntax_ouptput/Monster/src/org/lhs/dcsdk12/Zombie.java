@@ -46,6 +46,9 @@ public class Zombie extends Monster {
 	
 	@Override
 	public boolean equals(Object obj) {
+		if(this.getClass() != obj.getClass()) {
+			return false;
+		}
 		Zombie v = (Zombie)obj;
 		if(v.getAge() == this.getAge() && v.getDouble() == this.getDouble() && v.getMyname().equals(this.getMyname())) {
 			return true;

@@ -45,6 +45,9 @@ public class WereWolf extends Monster {
 	
 	@Override
 	public boolean equals(Object obj) {
+		if(this.getClass() != obj.getClass()) {
+			return false;
+		}
 		WereWolf v = (WereWolf)obj;
 		if(v.getAge() == this.getAge() && v.getDouble() == this.getDouble() && v.getMyname().equals(this.getMyname())) {
 			return true;
