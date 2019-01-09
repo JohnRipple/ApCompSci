@@ -55,13 +55,19 @@ public class Simpsons{
 		float upper_limit = (float)2.8; 
 		
 		// Number of interval 
-		int n = 6; 
-		
-		System.out.println(simpsons_(lower_limit, upper_limit, n)); 
-		function = true;
-		lower_limit = (float)-2.8;
-		System.out.println(simpsons_(lower_limit, upper_limit, n)); 
-		
+		int n = 8; 
+		int vl = 0;
+		int vs = 0;
+		for(int i = 0; i < 390; i++) {
+			vl += simpsons_(lower_limit, upper_limit, n);
+			//System.out.println(simpsons_(lower_limit, upper_limit, n)); 
+			function = true;
+			lower_limit = (float)-2.8;
+			System.out.println(simpsons_(lower_limit, upper_limit, n)); 
+			lower_limit = -3; 
+			function = false;
+		}
+			
 	} 
 } 
 
