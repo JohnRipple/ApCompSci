@@ -1,20 +1,15 @@
 // Java program for simpson's 1/3 rule 
 
 public class Simpsons{ 
-	private static boolean function = false;
 
 	// Function to calculate f(x) 
-	static float func(float x) 
+	static float func(float x, float r) 
 	{ 
-		if (function == false) {
-			return (float)(Math.sqrt(9-Math.pow(x, 2))); 
-		}
-		return (float)(Math.sqrt(7.84-Math.pow(x, 2))); 
+			return (float)(Math.sqrt(Math.pow(r, 2)-Math.pow(x, 2))); 
 	} 
 
 	// Function for approximate integral 
-	static float simpsons_(float ll, float ul, 
-									int n) 
+	static float simpsons_(float ll, float ul, int n, float r) 
 	{ 
 		// Calculating the value of h 
 		float h = (ul - ll) / n; 
@@ -27,7 +22,7 @@ public class Simpsons{
 		// Calculating values of x and f(x) 
 		for (int i = 0; i <= n; i++) { 
 			x[i] = ll + i * h; 
-			fx[i] = func(x[i]); 
+			fx[i] = func(x[i], r); 
 		} 
 
 		// Calculating result 
@@ -49,26 +44,32 @@ public class Simpsons{
 	public static void main(String s[]) 
 	{ 
 		// Lower limit 
-		float lower_limit = -3; 
+		float lower_limit = (float) -76.2; 
+		float lower_lim = (float)-73.2;
+		float layerHeight = (float).2;
 		
 		// Upper limit 
-		float upper_limit = (float)2.8; 
+		float upper_limit = (float)73.2; 
 		
 		// Number of interval 
 		int n = 8; 
-		int vl = 0;
-		int vs = 0;
-		for(int i = 0; i < 390; i++) {
-			vl += simpsons_(lower_limit, upper_limit, n);
-			//System.out.println(simpsons_(lower_limit, upper_limit, n)); 
-			function = true;
-			lower_limit = (float)-2.8;
-			System.out.println(simpsons_(lower_limit, upper_limit, n)); 
-			lower_limit = -3; 
-			function = false;
+		float vl = 0;
+		float vs = 0;
+		float radius = (float) 76.2;
+		float radiusSm = (float)73.2;
+		for(int i = 0; i < 374; i++) {
+			vl += simpsons_(lower_limit, upper_limit, n, radius);
+			System.out.println(simpsons_(lower_limit, upper_limit, n, radius)); 
+			vs += simpsons_(lower_lim, upper_limit, n, radiusSm);
+			//System.out.println(simpsons_(lower_limit, upper_limit, n));
+			lower_lim += layerHeight;
+			lower_limit += layerHeight; 
+			upper_limit -= layerHeight;
+			radius -= layerHeight;
+			radiusSm -= layerHeight;
 		}
-			
+		System.out.println(vl + " " + lower_limit);
+		System.out.println(vs + " " + lower_lim);
+		System.out.println((vl-vs)*4);
 	} 
 } 
-
-// This code is contributed by Gitanjali 
