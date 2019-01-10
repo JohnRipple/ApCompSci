@@ -1,7 +1,8 @@
 // Java program for simpson's 1/3 rule 
+import java.util.*;
 
 public class Simpsons{ 
-
+	
 	// Function to calculate f(x) 
 	static float func(float x, float r) 
 	{ 
@@ -11,6 +12,9 @@ public class Simpsons{
 	// Function for approximate integral 
 	static float simpsons_(float ll, float ul, int n, float r) 
 	{ 
+		if (ll > -1) {
+			return 0;
+		}
 		// Calculating the value of h 
 		float h = (ul - ll) / n; 
 
@@ -43,13 +47,16 @@ public class Simpsons{
 	// Driver Code 
 	public static void main(String s[]) 
 	{ 
+		Simpsons monLan = new Simpsons();
+		ArrayList<Float> volumeLarge = new ArrayList<Float>();
+		ArrayList<Float> volumeSmall = new ArrayList<Float>();
 		// Lower limit 
 		float lower_limit = (float) -76.2; 
 		float lower_lim = (float)-73.2;
 		float layerHeight = (float).2;
 		
 		// Upper limit 
-		float upper_limit = (float)73.2; 
+		float upper_limit = (float)71.12; 
 		
 		// Number of interval 
 		int n = 8; 
@@ -57,19 +64,35 @@ public class Simpsons{
 		float vs = 0;
 		float radius = (float) 76.2;
 		float radiusSm = (float)73.2;
-		for(int i = 0; i < 374; i++) {
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------");
+	    System.out.printf("%15s %15s %15s %15s %2s %20s %15s %15s", "Volume of Slice", "Lower Limit", "Upper Limit", "Radius"," - ", "Volume of Small Slice", "Lower Limit", "Radius");
+	    System.out.println();
+	    System.out.println("-------------------------------------------------------------------------------------------------------------------------");
+		for(int i = 0; i < 369; i++) {
 			vl += simpsons_(lower_limit, upper_limit, n, radius);
-			System.out.println(simpsons_(lower_limit, upper_limit, n, radius)); 
-			vs += simpsons_(lower_lim, upper_limit, n, radiusSm);
-			//System.out.println(simpsons_(lower_limit, upper_limit, n));
+			volumeLarge.add(simpsons_(lower_limit, upper_limit, n, radius));
+			//System.out.println(volumeLarge.get(i));
+			System.out.format("%15s %15s %15s %15s %2s %20s %15s %15s", simpsons_(lower_limit, upper_limit, n, radius), lower_limit, upper_limit, radius, " - ",simpsons_(lower_lim, upper_limit, n, radiusSm), lower_lim, radiusSm );
+			System.out.println();
+			//System.out.println("Volume of Slice: " + simpsons_(lower_limit, upper_limit, n, radius) + " Lower Limit: " + lower_limit + " Upper Limit: " + upper_limit + " Radius: " + radius); 
+			if(lower_lim < -1) {
+				vs += simpsons_(lower_lim, upper_limit, n, radiusSm);
+			}
+			//System.out.println("Volume of Small Slice: " + simpsons_(lower_lim, upper_limit, n, radius) + " Lower Limit: " + lower_lim + " Upper Limit: " + upper_limit + " Radius: " + radiusSm);
 			lower_lim += layerHeight;
 			lower_limit += layerHeight; 
 			upper_limit -= layerHeight;
 			radius -= layerHeight;
 			radiusSm -= layerHeight;
 		}
-		System.out.println(vl + " " + lower_limit);
-		System.out.println(vs + " " + lower_lim);
-		System.out.println((vl-vs)*4);
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Large Volume: " + (vl));
+		System.out.println("Small Volume: " + vs);
+		System.out.println("Subtracted Volume: " + (vl-vs));
+		System.out.println("Total Volume: " + (vl-vs)*2);
+		
+	  
+		
 	} 
+
 } 
