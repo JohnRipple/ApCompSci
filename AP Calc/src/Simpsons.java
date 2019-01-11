@@ -78,7 +78,7 @@ public class Simpsons{
 			if(lower_lim < -1) {
 				vs += simpsons_(lower_lim, upper_limit, n, radiusSm);
 			}
-			//System.out.println("Volume of Small Slice: " + simpsons_(lower_lim, upper_limit, n, radius) + " Lower Limit: " + lower_lim + " Upper Limit: " + upper_limit + " Radius: " + radiusSm);
+			//System.out.println("Volume of Small Slice: " + simpsons_(lower_lim, upper_limit, n, radiusSm) + " Lower Limit: " + lower_lim + " Upper Limit: " + upper_limit + " Radius: " + radiusSm);
 			lower_lim += layerHeight;
 			lower_limit += layerHeight; 
 			upper_limit -= layerHeight;
