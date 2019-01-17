@@ -51,29 +51,30 @@ public class Simpsons{
 		ArrayList<Float> volumeLarge = new ArrayList<Float>();
 		ArrayList<Float> volumeSmall = new ArrayList<Float>();
 		// Lower limit 
-		float lower_limit = (float) -76.2; 
-		float lower_lim = (float)-73.2;
+		float lower_limit = (float) -95.25; 
+		float lower_lim = (float)-90.25;
 		float layerHeight = (float).2;
 		
 		// Upper limit 
-		float upper_limit = (float)71.12; 
+		float upper_limit = (float)85.25; 
 		
 		// Number of interval 
 		int n = 8; 
 		float vl = 0;
 		float vs = 0;
-		float radius = (float) 76.2;
-		float radiusSm = (float)73.2;
+		float radius = (float) 95.25;
+		float radiusSm = (float)90.25;
 		System.out.println("-------------------------------------------------------------------------------------------------------------------------");
 	    System.out.printf("%15s %15s %15s %15s %2s %20s %15s %15s", "Volume of Slice", "Lower Limit", "Upper Limit", "Radius"," - ", "Volume of Small Slice", "Lower Limit", "Radius");
 	    System.out.println();
 	    System.out.println("-------------------------------------------------------------------------------------------------------------------------");
-		for(int i = 0; i < 369; i++) {
+		for(int i = 0; i < 439; i++) {
 			vl += simpsons_(lower_limit, upper_limit, n, radius);
 			volumeLarge.add(simpsons_(lower_limit, upper_limit, n, radius));
 			//System.out.println(volumeLarge.get(i));
-			System.out.format("%15s %15s %15s %15s %2s %20s %15s %15s", simpsons_(lower_limit, upper_limit, n, radius), lower_limit, upper_limit, radius, " - ",simpsons_(lower_lim, upper_limit, n, radiusSm), lower_lim, radiusSm );
-			System.out.println();
+			//System.out.format("%15s %15s %15s %15s %2s %20s %15s %15s", simpsons_(lower_limit, upper_limit, n, radius), lower_limit, upper_limit, radius, " - ",simpsons_(lower_lim, upper_limit, n, radiusSm), lower_lim, radiusSm );
+			System.out.println(radiusSm);
+			//System.out.println();
 			//System.out.println("Volume of Slice: " + simpsons_(lower_limit, upper_limit, n, radius) + " Lower Limit: " + lower_limit + " Upper Limit: " + upper_limit + " Radius: " + radius); 
 			if(lower_lim < -1) {
 				vs += simpsons_(lower_lim, upper_limit, n, radiusSm);
