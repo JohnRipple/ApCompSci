@@ -8,6 +8,7 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="sort"/>
 			<item value="background"/>
 			<item value="setBackground"/>
 			<item value="horizontal"/>
@@ -22,7 +23,6 @@
 			<item value="bookingDate"/>
 			<item value="Swing Database"/>
 			<item value="summary"/>
-			<item value="error"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Truck"/>

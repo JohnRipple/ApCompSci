@@ -40,7 +40,7 @@ public class Prob08 {
                 e = c.split("\\.");
                 e[1] = "." + e[1];
                 double sec = Double.parseDouble(e[1]);
-                int seconds = (int)(sec*60);
+                int seconds = (int)(Math.round(sec*60));
                 System.out.println("Time to Mars: " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds");
                 
                 
