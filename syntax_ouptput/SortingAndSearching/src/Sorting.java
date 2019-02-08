@@ -2,11 +2,13 @@ import java.util.Arrays;
 
 public class Sorting {
 	static int[] nums = { 9, 2, 8, 5, 1 };
+	static int[] nums1 = {17 , 13 , 4 , 1 , 6};
 
 	public static void main(String[] args) {
 		System.out.println("Start of array passing: " + Arrays.toString(nums));
-		//selectionSort(nums);
-		insertionSort(nums);
+		//selectionSort(nums1);
+		//insertionSort(nums);
+		System.out.println(Arrays.binarySearch(nums1, 11));
 		System.out.println("End of array passing: " + Arrays.toString(nums));
 	}
 
