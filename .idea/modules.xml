@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/syntax_ouptput/SortingAndSearching/SortingAndSearching.iml" filepath="$PROJECT_DIR$/syntax_ouptput/SortingAndSearching/SortingAndSearching.iml" />
+      <module fileurl="file://$PROJECT_DIR$/syntax_ouptput/Strings/Strings.iml" filepath="$PROJECT_DIR$/syntax_ouptput/Strings/Strings.iml" />
+    </modules>
+  </component>
+</project>
