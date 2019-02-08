@@ -17,6 +17,8 @@ public class Prob03 {
 	        while (T > 0) {
 	        	// read the line of text
                 inLine = br.readLine();
+                String[] inputs = inLine.split("th");
+                System.out.println(inputs[1]);
                 if(inLine.equals("1th")) {
                 	System.out.println("1st");
                 } else if (inLine.equals("2th")) {
