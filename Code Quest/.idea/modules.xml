@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CodeQuest/CodeQuest.iml" filepath="$PROJECT_DIR$/CodeQuest/CodeQuest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CodeQuest2017/CodeQuest2017.iml" filepath="$PROJECT_DIR$/CodeQuest2017/CodeQuest2017.iml" />
       <module fileurl="file://$PROJECT_DIR$/CodeQuest2018/CodeQuest2018.iml" filepath="$PROJECT_DIR$/CodeQuest2018/CodeQuest2018.iml" />
     </modules>
   </component>
