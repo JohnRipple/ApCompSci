@@ -13,15 +13,26 @@ public class Prob07 {
             FileReader fr = new FileReader(inFile);
             BufferedReader br = new BufferedReader(fr);
             String inLine = null;
-            while(!br.readLine().equals(null)){
-                String[] s = br.readLine().split("\\s");
-                ArrayList<String> s1 = new ArrayList<String>;
-                for(int i = 1; i < s.length; i++){
-                    s1.add(s[i]);
+            while((inLine = br.readLine()) != null){
+                String[] s = inLine.split("\\s");
+                ArrayList<Integer> n = new ArrayList<Integer>();
+                for(int i = 0; i < s.length; i++){
+                    n.add(Integer.parseInt(s[i]));
                 }
-                Collections.sort(s1);
-
-
+                int num = n.get(0);
+                n.remove(0);
+                Collections.sort(n, Collections.reverseOrder());
+                int total = 0;
+                for(int i = 0; i < 3; i++){
+                    if(i < num){
+                        if(i == 0) {
+                            total += n.get(i);
+                        } else {
+                            total *= n.get(i);
+                        }
+                    }
+                }
+                System.out.println(total);
             }
 
         } catch (Exception e) {
