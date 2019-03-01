@@ -23,16 +23,27 @@ public class Prob07 {
                 n.remove(0);
                 Collections.sort(n, Collections.reverseOrder());
                 int total = 0;
+                int total2 = 0;
                 for(int i = 0; i < 3; i++){
                     if(i < num){
                         if(i == 0) {
                             total += n.get(i);
+                            total2 += n.get(n.size()-1);
                         } else {
                             total *= n.get(i);
+                            if(i == 1){
+                                total2 *= n.get(n.size()-2);
+                            } else {
+                                total2 *= n.get(0);
+                            }
                         }
                     }
                 }
-                System.out.println(total);
+                if (total >= total2) {
+                    System.out.println(total);
+                } else {
+                    System.out.println(total2);
+                }
             }
 
         } catch (Exception e) {
