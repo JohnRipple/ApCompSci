@@ -7,4 +7,3 @@ try:
         inline = f.readline()
 finally:
     f.close()
-
