@@ -1,14 +1,14 @@
 import java.util.*;
 public class Player {
-    private boolean[][] opponentGameBoard;
-    private boolean[][] selfGameBoard;
+    private String[][] opponentGameBoard;
+    private String[][] selfGameBoard;
     private String firstName;
-    private Ship[] ships;
+    private Ship[] ships = new Ship[3];
 
     public Player(String f) {
-        firstName = f;
-        opponentGameBoard = new boolean[10][10];
-        selfGameBoard = new boolean[10][10];
+        this.firstName = f;
+        this.opponentGameBoard = new String[10][10];
+        this.selfGameBoard = new String[10][10];
     }
 
     public void setupShips() {
@@ -23,7 +23,11 @@ public class Player {
             if(bat.length != 8)
                 repeat = false;
             setScoreBoard(bat);
+            if(repeat == true){
+                ships[0] = new Ship("Battleship", 4, bat);
+            }
         }
+
         repeat = false;
         while(repeat == false){
             System.out.println("Cruiser Location 3 spots: ");
@@ -32,6 +36,9 @@ public class Player {
             if(cru.length != 6)
                 repeat = false;
             setScoreBoard(cru);
+            if(repeat == true) {
+                ships[1] = new Ship("Cruiser", 3, cru);
+            }
         }
         repeat = false;
         while (repeat == false){
@@ -41,6 +48,9 @@ public class Player {
             if(sub.length != 4)
                 repeat = false;
             setScoreBoard(sub);
+            if(repeat == true) {
+                ships[2] = new Ship("Submarine", 2, sub);
+            }
         }
 
     }
@@ -49,14 +59,33 @@ public class Player {
 
     }
 
-    public boolean checkForHit(String l) {
+    public boolean checkForHit(String[] l) {
+        String[] loc = ships[0].getLocation();
+        for(int i = 0; i < loc.length; i+=2){
+            if(loc[i].equals(l[0]) && loc[i+1].equals(l[1])){
+                return true;
+                this.opponentGameBoard[Integer.parseInt(l[0])][Integer.parseInt(l[1])] = "X";
+            }
+        }
+        loc = ships[1].getLocation();
+        for(int i = 0; i < loc.length; i+=2){
+            if(loc[i].equals(l[0]) && loc[i+1].equals(l[1])){
+                return true;
+            }
+        }
+        loc = ships[2].getLocation();
+        for(int i = 0; i < loc.length; i+=2){
+            if(loc[i].equals(l[0]) && loc[i+1].equals(l[1])){
+                return true;
+            }
+        }
         return false;
     }
-    public boolean[][] getOpponentGameBoard(){
+    public String[][] getOpponentGameBoard(){
         return opponentGameBoard;
     }
 
-    public boolean[][] getSelfGameBoard(){
+    public String[][] getSelfGameBoard(){
         return selfGameBoard;
     }
 
@@ -119,7 +148,7 @@ public class Player {
 
     private void setScoreBoard(String[] s){
         for(int i = 0; i < s.length; i+=2){
-            selfGameBoard[Integer.parseInt(s[i])][Integer.parseInt(s[i+1])] = true;
+            selfGameBoard[Integer.parseInt(s[i])][Integer.parseInt(s[i+1])] = "S";
         }
     }
 

@@ -22,15 +22,24 @@ public class Battleship {
         player1 = new Player(scan.nextLine());
         player1.setupShips();
         System.out.println("Enter Player 2 Name: ");
-       // player2 = new Player(scan.nextLine());
-        //player2.setupShips();
+        player2 = new Player(scan.nextLine());
+        player2.setupShips();
     }
 
     public void playGame(){
         int turn = 0;
+        Scanner s = new Scanner(System.in);
+        String[] guess = new String[2];
         //while(checkForWinner() == false){
             if(turn == 0){
                 boards(turn);
+                System.out.println("Input Guess Location: ");
+                guess = s.nextLine().split("-");
+                if(player2.checkForHit(guess) == false){
+                    System.out.println("Miss");
+                } else {
+                    System.out.println("Hit");
+                }
                 turn = 1;
             } else {
                 boards(turn);
@@ -53,8 +62,8 @@ public class Battleship {
     }
 
     private void boards(int f) {
-        boolean[][] o;
-        boolean[][] s;
+        String[][] o;
+        String[][] s;
         if (f == 0) {
             o = player1.getOpponentGameBoard();
             s = player1.getSelfGameBoard();
@@ -70,10 +79,10 @@ public class Battleship {
             for(int i = 0; i < 10; i++){
                 System.out.print(i + " ");
                 for(int j = 0; j < 10; j++){
-                    if(s[i][j] == false) {
+                    if(s[i][j] == null) {
                         System.out.print("-  ");
-                    } else {
-                        System.out.print("T  ");
+                    } else if (s[i][j].equals("S")) {
+                        System.out.print("S  ");
                     }
                 }
                 System.out.println();
@@ -87,9 +96,9 @@ public class Battleship {
             for(int i = 0; i < 10; i++){
                 System.out.print(i + " ");
                 for(int j = 0; j < 10; j++){
-                    if(o[i][j] == false) {
+                    if(o[i][j] == null) {
                         System.out.print("-  ");
-                    } else {
+                    } else if (s[i][j].equals("S")) {
                         System.out.print("T  ");
                     }
                 }
@@ -97,6 +106,9 @@ public class Battleship {
             }
 
     }
+
+
+
 
 
 }

@@ -5,10 +5,10 @@ public class Ship {
     private boolean isSunk;
 
     public Ship(String n, int s, String[] l){
-        name = n;
-        size = s;
-        location = l;
-        isSunk = false;
+        this.name = n;
+        this.size = s;
+        this.location = l;
+        this.isSunk = false;
     }
 
     public String getName() {
