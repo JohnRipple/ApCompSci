@@ -3,6 +3,8 @@ public class Ship {
     private int size;
     private String[] location;
     private boolean isSunk;
+    public static String HIT = "X";
+    public static String MISS = "O";
 
     public Ship(String n, int s, String[] l){
         this.name = n;
@@ -27,7 +29,13 @@ public class Ship {
         return isSunk;
     }
 
-    public boolean hit(String locationToCheck){
+    public boolean checkForHit(String[] locationToCheck){
+        String[] loc = this.getLocation();
+        for (int i = 0; i < loc.length; i += 2) {
+            if (loc[i].equals(locationToCheck[0]) && loc[i + 1].equals(locationToCheck[1])) {
+                return true;
+            }
+        }
         return false;
     }
 

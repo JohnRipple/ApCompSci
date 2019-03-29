@@ -28,24 +28,39 @@ public class Battleship {
 
     public void playGame(){
         int turn = 0;
-        Scanner s = new Scanner(System.in);
+        int player1Missles = 0;
+        int player2Missles = 0;
         String[] guess = new String[2];
-        //while(checkForWinner() == false){
+        while(checkForWinner() == false && player1Missles <= 40 && player2Missles <= 40){
             if(turn == 0){
                 boards(turn);
-                System.out.println("Input Guess Location: ");
-                guess = s.nextLine().split("-");
+                guess = player1.takeTurn();
                 if(player2.checkForHit(guess) == false){
-                    System.out.println("Miss");
+                    System.out.println("Miss\n");
                 } else {
-                    System.out.println("Hit");
+                    System.out.println("Hit\n");
+                    score1++;
                 }
                 turn = 1;
+                player1Missles++;
             } else {
                 boards(turn);
+                guess = player2.takeTurn();
+                if(player1.checkForHit(guess) == false){
+                    System.out.println("Miss\n");
+                } else {
+                    System.out.println("Hit\n");
+                    score2++;
+                }
                 turn = 0;
+                player2Missles++;
             }
-       // }
+        }
+        if (score1 == 9){
+            System.out.println("Player 1 Wins");
+        } else if (score2 == 9){
+            System.out.println("Player 2 Wins");
+        }
     }
 
     private boolean checkForWinner(){
@@ -64,30 +79,15 @@ public class Battleship {
     private void boards(int f) {
         String[][] o;
         String[][] s;
-        if (f == 0) {
+        if (f == 1) {
             o = player1.getOpponentGameBoard();
             s = player1.getSelfGameBoard();
+            System.out.println("Player 2 Turn");
         } else {
             o = player2.getOpponentGameBoard();
             s = player2.getSelfGameBoard();
+            System.out.println("Player 1 Turn");
         }
-            System.out.print("  ");
-            for(int i = 0; i < 10; i++){
-                System.out.print(i + "  ");
-            }
-            System.out.println();
-            for(int i = 0; i < 10; i++){
-                System.out.print(i + " ");
-                for(int j = 0; j < 10; j++){
-                    if(s[i][j] == null) {
-                        System.out.print("-  ");
-                    } else if (s[i][j].equals("S")) {
-                        System.out.print("S  ");
-                    }
-                }
-                System.out.println();
-            }
-            System.out.println();
         System.out.print("  ");
         for(int i = 0; i < 10; i++){
             System.out.print(i + "  ");
@@ -98,8 +98,10 @@ public class Battleship {
                 for(int j = 0; j < 10; j++){
                     if(o[i][j] == null) {
                         System.out.print("-  ");
-                    } else if (s[i][j].equals("S")) {
-                        System.out.print("T  ");
+                    } else if (o[i][j].equals(Ship.HIT)) {
+                        System.out.print("X  ");
+                    } else {
+                        System.out.print("O  ");
                     }
                 }
                 System.out.println();
@@ -107,8 +109,5 @@ public class Battleship {
 
     }
 
-
-
-
-
+    //Last Brace
 }
