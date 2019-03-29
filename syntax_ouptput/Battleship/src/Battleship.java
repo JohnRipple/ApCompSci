@@ -33,7 +33,7 @@ public class Battleship {
         String[] guess = new String[2];
         while(checkForWinner() == false && player1Missles <= 40 && player2Missles <= 40){
             if(turn == 0){
-                boards(turn);
+                displayOpponentGameBoardRealTime(turn);
                 guess = player1.takeTurn();
                 if(player2.checkForHit(guess) == false){
                     System.out.println("Miss\n");
@@ -44,7 +44,7 @@ public class Battleship {
                 turn = 1;
                 player1Missles++;
             } else {
-                boards(turn);
+                displayOpponentGameBoardRealTime(turn);
                 guess = player2.takeTurn();
                 if(player1.checkForHit(guess) == false){
                     System.out.println("Miss\n");
@@ -72,11 +72,7 @@ public class Battleship {
         return false;
     }
 
-    private void displayOpponentGameBoardRealTime(){
-
-    }
-
-    private void boards(int f) {
+    private void displayOpponentGameBoardRealTime(int f) {
         String[][] o;
         String[][] s;
         if (f == 1) {

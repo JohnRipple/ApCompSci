@@ -29,10 +29,18 @@ public class Ship {
         return isSunk;
     }
 
+    public void setIsSunk(boolean b){
+        if(b == true){
+            isSunk = true;
+        } else
+            isSunk = false;
+    }
+
     public boolean checkForHit(String[] locationToCheck){
         String[] loc = this.getLocation();
         for (int i = 0; i < loc.length; i += 2) {
             if (loc[i].equals(locationToCheck[0]) && loc[i + 1].equals(locationToCheck[1])) {
+                //if loc all positions are x then set isunk to true
                 return true;
             }
         }
