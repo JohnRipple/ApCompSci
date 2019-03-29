@@ -27,7 +27,6 @@ public class Player {
                 ships[0] = new Ship("Battleship", 4, bat);
             }
         }
-
         repeat = false;
         while(repeat == false){
             System.out.println("Cruiser Location 3 spots: ");
@@ -65,17 +64,10 @@ public class Player {
 
     public boolean checkForHit(String[] l) {
         for(int j = 0; j < 3; j++) {
-            //String[] loc = ships[j].getLocation();
-
-            /*for (int i = 0; i < loc.length; i += 2) {
-                if (loc[i].equals(l[0]) && loc[i + 1].equals(l[1])) {
-                    this.opponentGameBoard[Integer.parseInt(l[0])][Integer.parseInt(l[1])] = Ship.HIT;
-
-                    return true;
-                }
-            }*/
+            String[] loc = ships[j].getLocation();
             if(ships[j].checkForHit(l) == true){
                 this.opponentGameBoard[Integer.parseInt(l[0])][Integer.parseInt(l[1])] = Ship.HIT;
+                return true;
             }
         }
         this.opponentGameBoard[Integer.parseInt(l[0])][Integer.parseInt(l[1])] = Ship.MISS;
@@ -112,7 +104,7 @@ public class Player {
             boolean horizontal = false;
             boolean vertical = false;
             for (int i = 0; i < x.length - 1; i++) {
-                if (x[i] == x[i + 1] - 1 || x[i] == x[i + 1] - 1) {
+                if (x[i] == x[i + 1] - 1 || x[i] == x[i + 1] + 1) {
                     next++;
                 }
             }
@@ -131,7 +123,7 @@ public class Player {
             }
             if (horizontal == true) {
                 for (int i = 0; i < y.length - 1; i++) {
-                    if (y[i] == y[i + 1] - 1 || y[i] == y[i + 1] - 1) {
+                    if (y[i] == y[i + 1] - 1 || y[i] == y[i + 1] + 1) {
                         count++;
                     }
                 }
