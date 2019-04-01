@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 public class Player {
     private String[][] opponentGameBoard;
     private String[][] selfGameBoard;

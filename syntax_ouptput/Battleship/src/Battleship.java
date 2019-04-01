@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 public class Battleship {
     private Player player1;
     private Player player2;
