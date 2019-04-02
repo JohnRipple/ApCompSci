@@ -95,9 +95,9 @@ public class Battleship {
                     if(o[i][j] == null) {
                         System.out.print("-  ");
                     } else if (o[i][j].equals(Ship.HIT)) {
-                        System.out.print("X  ");
+                        System.out.print(Ship.HIT + " ");
                     } else {
-                        System.out.print("O  ");
+                        System.out.print(Ship.MISS + " ");
                     }
                 }
                 System.out.println();
