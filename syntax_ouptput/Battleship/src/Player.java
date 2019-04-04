@@ -65,10 +65,13 @@ public class Player {
     public boolean checkForHit(String[] l) {
         for(int j = 0; j < 3; j++) {
             String[] loc = ships[j].getLocation();
-            if(ships[j].checkForHit(l) == true){
-                this.opponentGameBoard[Integer.parseInt(l[0])][Integer.parseInt(l[1])] = Ship.HIT;
-                return true;
-            }
+                if (ships[j].checkForHit(l, this.opponentGameBoard).equals("true")) {
+                    this.opponentGameBoard[Integer.parseInt(l[0])][Integer.parseInt(l[1])] = Ship.HIT;
+                    return true;
+                } else if (ships[j].checkForHit(l, this.opponentGameBoard).equals("hit")){
+                    System.out.println("This has already been hit!");
+                    return false;
+                }
         }
         this.opponentGameBoard[Integer.parseInt(l[0])][Integer.parseInt(l[1])] = Ship.MISS;
         return false;

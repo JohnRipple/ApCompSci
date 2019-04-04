@@ -41,26 +41,29 @@ public class Ship {
             isSunk = false;
     }
 
-    public boolean checkForHit(String[] locationToCheck){
+    public String checkForHit(String[] locationToCheck, String[][] ogb){
         String[] loc = this.getLocation();
-        for (int i = 0; i < loc.length; i += 2) {
-            if (loc[i].equals(locationToCheck[0]) && loc[i + 1].equals(locationToCheck[1])) {
-                //if loc all positions are x then set isunk to true
-                this.shipLoc[i] = HIT;
-                this.shipLoc[i+1] = HIT;
-                int hits = 0;
-                for(int j = 0; j < this.shipLoc.length; j++){
-                    if(this.shipLoc[j].equals(HIT)){
-                        hits++;
+        while(ogb[Integer.parseInt(locationToCheck[0])][Integer.parseInt(locationToCheck[1])] == null) {
+            for (int i = 0; i < loc.length; i += 2) {
+                if (loc[i].equals(locationToCheck[0]) && loc[i + 1].equals(locationToCheck[1])) {
+                    //if loc all positions are x then set isunk to true
+                    this.shipLoc[i] = HIT;
+                    this.shipLoc[i + 1] = HIT;
+                    int hits = 0;
+                    for (int j = 0; j < this.shipLoc.length; j++) {
+                        if (this.shipLoc[j].equals(HIT)) {
+                            hits++;
+                        }
                     }
+                    if (hits >= this.shipLoc.length) {
+                        this.setIsSunk(true);
+                    }
+                    return "true";
                 }
-                if(hits >= this.shipLoc.length){
-                    this.setIsSunk(true);
-                }
-                return true;
             }
+            return "false";
         }
-        return false;
+        return "hit";
     }
 
 }

@@ -1,42 +1,37 @@
 import java.util.Scanner;
 public class Prac {
     public static void main(String[] args){
-        double z = 94.32;
-        long x = 98;
-        int a = 9, b = 4;
-        char var = 'C';
-        System.out.println( 5 + 2 * 4 );			// LINE 1
+        System.out.println( Math.pow( 4, 2) );    		// LINE 1
 
-        System.out.println( a * (a % b) );			// LINE 2
+        System.out.println( Math.ceil( 5.1) );    		// LINE 2
 
-        System.out.println( b / a );				// LINE 3
+        System.out.println( Math.floor( 8.9 ) );   		// LINE 3
 
-        System.out.println( 'B' + 5 );				// LINE 4
+        System.out.println( Math.sqrt( 64 ) );    		// LINE 4
 
-        System.out.println( 4 % 8 );				// LINE 5
+        System.out.println( Math.round( 12.34 ) ); 		// LINE 5
 
-        System.out.println( a % b );				// LINE 6
+        System.out.println( Math.round (12.56 ) ); 		// LINE 6
 
-        System.out.println( b % a );				// LINE 7
+        System.out.println( Math.max( 7,3 ));    		// LINE 7
 
-        System.out.println( 8 % 4 );				// LINE 8
+        System.out.println( Math.min( 7,3 ));    		// LINE 8
 
-        System.out.println( (double)( a / b ) );		// LINE 9
+        System.out.println( Math.max( 2.3, 5.6 )); 		// LINE 9
 
-        System.out.println( (double)a / b );			// LINE 10
+        System.out.println( Math.min( 2.3, 5.6 )); 		// LINE 10
 
-        System.out.println( 7.0 / 2 );				// LINE 11
+        System.out.println( Math.abs(-213));    		// LINE 11
 
-        System.out.println((char)(var + 5));			// LINE 12
+        System.out.println( Math.abs(213));    		// LINE 12
 
-        a = var + 2;
-        System.out.println( a );    				// LINE 13
+        System.out.println( Math.ceil(Math.sqrt(17)));	// LINE 13
 
-        z = var + 5;
-        System.out.println( z);    				// LINE 14
+        System.out.println( Math.random() );    		// LINE 14
 
-        var = 'A' + 4;
-        System.out.println( var);				// LINE 15
+        System.out.println( Math.random()*10 );    		// LINE 15
+
+        System.out.println( Math.random()*20+10 );    	// LINE 16
 
 
     }
