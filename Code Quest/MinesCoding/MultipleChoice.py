@@ -3,26 +3,6 @@ def sorting(s1, s2, b, b1):
     s1, s2 = zip(*sorted(zip(s1, s2), reverse=b))
     s1 = list(s1)
     s2 = list(s2)
-    if b1 == False:
-        for i in range(len(s1)):
-            if i + 1 < len(s1):
-                if score[i] == s2[i + 1]:
-                    tempStu = [0] * 2
-                    tempStu[0] = s1[i]
-                    tempStu[1] = s1[i + 1]
-                    tempStu.sort()
-                    s1[i] = tempStu[0]
-                    s1[i + 1] = tempStu[1]
-    else:
-        for i in range(len(s2)):
-            if i + 1 < len(s2):
-                if score[i] == s1[i + 1]:
-                    tempStu = [0] * 2
-                    tempStu[0] = s2[i]
-                    tempStu[1] = s2[i + 1]
-                    tempStu.sort()
-                    s2[i] = tempStu[0]
-                    s2[i + 1] = tempStu[1]
     for i in range(len(s1)):
         if b1 == False:
             print(str(s1[i]) + " " + str(s2[i]))
