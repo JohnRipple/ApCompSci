@@ -1,14 +1,20 @@
+import java.util.ArrayList;
+
 public class Ship {
     private String name;
     private int size;
     private String[] location;
     private boolean isSunk;
+    public static String HIT = "X";
+    public static String MISS = "O";
+    private String[] shipLoc;
 
     public Ship(String n, int s, String[] l){
-        name = n;
-        size = s;
-        location = l;
-        isSunk = false;
+        this.name = n;
+        this.size = s;
+        this.location = l;
+        this.shipLoc = l;
+        this.isSunk = false;
     }
 
     public String getName() {
@@ -27,8 +33,37 @@ public class Ship {
         return isSunk;
     }
 
-    public boolean hit(String locationToCheck){
-        return false;
+    public void setIsSunk(boolean b){
+        if(b == true){
+            isSunk = true;
+            System.out.println("You sunk the " + getName());
+        } else
+            isSunk = false;
+    }
+
+    public String checkForHit(String[] locationToCheck, String[][] ogb){
+        String[] loc = this.getLocation();
+        while(ogb[Integer.parseInt(locationToCheck[0])][Integer.parseInt(locationToCheck[1])] == null) {
+            for (int i = 0; i < loc.length; i += 2) {
+                if (loc[i].equals(locationToCheck[0]) && loc[i + 1].equals(locationToCheck[1])) {
+                    //if loc all positions are x then set isunk to true
+                    this.shipLoc[i] = HIT;
+                    this.shipLoc[i + 1] = HIT;
+                    int hits = 0;
+                    for (int j = 0; j < this.shipLoc.length; j++) {
+                        if (this.shipLoc[j].equals(HIT)) {
+                            hits++;
+                        }
+                    }
+                    if (hits >= this.shipLoc.length) {
+                        this.setIsSunk(true);
+                    }
+                    return "true";
+                }
+            }
+            return "false";
+        }
+        return "hit";
     }
 
 }
