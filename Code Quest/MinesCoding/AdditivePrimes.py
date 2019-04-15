@@ -1,32 +1,31 @@
-INPUT_FILE_NAME = "AdditivePrimesInput.txt"
-import re
+import sys
 
 def prime(x):
-    if x > 1:
-        for i in range(2, x//2):
-            if (x % i ) == 0:
-               return False
-        else:
-            return True
-    else:
+    if x < 2:
         return False
-
-try:
-    f = open(INPUT_FILE_NAME, "r")
-    t = int(f.readline())
-    thold = str(t)
-    s = prime(t)
-    if s == True:
-        p = re.split("", thold)
-        total = 0;
-        for i in range(1, len(p) - 1):
-            total += int(p[i])
-        if(prime(total) == True):
-            print("ADDITIVE PRIME")
-        else:
-            print("PRIME, BUT NOT ADDITIVE")
     else:
-        print("COMPOSITE")
-finally:
-    f.close()
+        for j in range(2, int(x ** (1 / 2.0)) + 1):
+            if (x % j) == 0:
+                return False
+        return True
 
+def sumDigits(digit):
+    return sum(int(x) for x in digit if x.isdigit())
+
+sys.stdin = open('AdditivePrimesInput.txt', 'r')
+li = []
+for i in sys.stdin:
+    li.append(i)
+
+t = int(li[0])
+thold = str(t)
+s: bool = prime(t)
+if s:
+    total = int(sumDigits(thold))
+    if prime(total):
+        print("ADDITIVE PRIME")
+    else:
+        print("PRIME, BUT NOT ADDITIVE")
+else:
+    print("COMPOSITE")
+sys.exit()
