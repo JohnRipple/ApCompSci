@@ -151,5 +151,4 @@ public class Player {
             selfGameBoard[Integer.parseInt(s[i])][Integer.parseInt(s[i+1])] = "S";
         }
     }
-
 }
