@@ -1,0 +1,15 @@
+public class PondStocker {
+	private Environment theEnv;
+	private double minDensity;
+	
+	private int numUnder() {
+		int t = (int)(theEnv.numRows * theEnv.numCols);
+		int current = theEnv.numObjects();
+		int n = 0;
+		while((double)current / t <= minDensity) {
+			n++;
+			current++;
+		}
+		return n;
+	}
+}
