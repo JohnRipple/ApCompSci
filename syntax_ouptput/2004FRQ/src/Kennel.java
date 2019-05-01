@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Kennel {
     private ArrayList<Pet> petList = new ArrayList<>();
@@ -17,5 +20,6 @@ public class Kennel {
     public static void main(String[] args){
         Kennel k = new Kennel();
         k.allSpeak();
+        int[] i = {1,2,3,4,5667,43,2456,7};
     }
 }
