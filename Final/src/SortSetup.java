@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SortSetup {
     private SortIt[] sorts = new SortIt[4];
     private Integer[] data = {38, 27, 43, 3, 82, 9, 10, 11};
@@ -23,6 +25,7 @@ public class SortSetup {
             } else {
                 sorts[i].selectionSort(data);
             }
+            System.out.println(Arrays.toString(data));
             for(int j = 0; j < data.length; j++){
                 data[j] = stored[j];
             }

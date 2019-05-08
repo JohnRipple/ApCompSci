@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SortIt {
     String type;
     Integer[] data;
@@ -124,7 +126,7 @@ public class SortIt {
 
     public String pPartition(Integer[] ep){
         String s = "";
-        for(int i = 0; i < 21; i++){
+        for(int i = 0; i < Arrays.toString(ep).length(); i++){
             s += "-";
         }
         return s;
